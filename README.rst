@@ -1,5 +1,5 @@
-PyTemplate
-==========
+PyTemplatest
+============
 
 A python project template with batteries included to code with best practices.
 
@@ -7,12 +7,14 @@ A python project template with batteries included to code with best practices.
         * pytest
         * hypothesis
         * coverage
-    * Documentation: sphinx
+    * Documentation:
+        * Sphinx
     * Linter
         * pylint
-        * radon -> code complexity
+        * radon
     * Git
         * .gitignore
     * Editor configuration
         * .vscode
-    * Command runner: just
+    * Command runner:
+        * just

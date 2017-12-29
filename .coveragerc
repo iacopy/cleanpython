@@ -1,0 +1,4 @@
+[run]
+branch = True
+# avoid to report non-own files
+source = src
