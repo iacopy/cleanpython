@@ -18,6 +18,13 @@ setup:
     {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pip install -r requirements.txt
     @echo Now please activate the virtualenv, then call "just doc-setup".
 
+# statically check the codebase
+@lint:
+    {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m flake8 src
+    echo "flake8: OK"
+    {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pylint src
+    echo "pylint: OK"
+
 # run tests
 test:
     pytest
