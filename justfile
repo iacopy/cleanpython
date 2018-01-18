@@ -22,6 +22,8 @@ setup:
 
 # statically check the codebase
 @lint:
+    {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m mypy src
+    echo "mypy  : OK"
     {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m flake8 src
     echo "flake8: OK"
     {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pylint src
