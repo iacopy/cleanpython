@@ -6,6 +6,8 @@ DOC_LANGUAGE = 'en'
 DOC_INIT_VERSION = '0.1'
 VIRTUALENVS_DIR = '~/.virtualenvs'
 
+# Quality requirements
+MIN_COVERAGE = '100'
 
 # just list available recipes
 @welcome:
@@ -32,6 +34,18 @@ test:
 # open coverage html index
 coverage: test
     open htmlcov/index.html
+
+# check coverage satisfies requirements
+@check-coverage:
+    coverage report --fail-under {{MIN_COVERAGE}}
+    echo "test coverage: OK"
+
+# code analysis, test and coverage
+@quality:
+    just lint
+    just test
+    just check-coverage
+    echo Quality check OK.
 
 # bootstrap documentation
 @doc-setup:
