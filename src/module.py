@@ -3,7 +3,7 @@ Module example to show doctests and documentation results.
 """
 
 
-def add(num_1, num_2):
+def add(num_1: float, num_2: float) -> float:
     """
     Add 2 numbers
     """

@@ -3,7 +3,7 @@ Test stuff
 """
 
 
-import pytest
+import pytest  # type: ignore
 
 from module import add
 
