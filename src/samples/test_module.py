@@ -5,7 +5,7 @@ Test stuff
 
 import pytest  # type: ignore
 
-from module import add
+from samples.module import add
 
 
 @pytest.mark.parametrize('num_1,num_2,expected', [
