@@ -88,7 +88,7 @@ commit MESSAGE: committable
 
 # remove artifacts (pyc, __pycache__, coverage stuff, built docs)
 cleanup:
-    rm -rf src/__pycache__
+    find . -type d -name __pycache__ | xargs rm -rfv
     rm -rf htmlcov
     coverage erase
 
