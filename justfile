@@ -49,6 +49,21 @@ coverage: test
     just check-coverage
     echo Quality check OK.
 
+# ensure that git repo is clean for commit
+# (contains only stuff in the index, not in the worktree)
+@_worktree_clean:
+    python src/git_status.py index
+    echo git-staged files and clean worktree.
+
+# require quality and no garbage in the repo worktree
+@committable: quality
+    just _worktree_clean
+    echo Your code seems committable.
+
+# git commit if your code is committable
+commit MESSAGE: committable
+    git commit -m "{{MESSAGE}}"
+
 # bootstrap documentation
 @doc-setup:
     @echo Setting up documentation...
