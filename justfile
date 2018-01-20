@@ -42,8 +42,8 @@ coverage: test
     coverage report --fail-under {{MIN_COVERAGE}}
     echo "test coverage: OK"
 
-# code analysis, test and coverage
-@quality:
+# Quality Assurance: code analysis, test and coverage
+@qa:
     just lint
     just test
     just check-coverage
@@ -56,7 +56,7 @@ coverage: test
     echo git-staged files and clean worktree.
 
 # require quality and no garbage in the repo worktree
-@committable: quality
+@committable: qa
     just _worktree_clean
     echo Your code seems committable.
 
