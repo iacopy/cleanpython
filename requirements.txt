@@ -4,5 +4,6 @@ hypothesis
 mypy
 pylint
 pytest
+pytest-benchmark
 pytest-cov
 Sphinx

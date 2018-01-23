@@ -64,6 +64,10 @@ coverage: test
 commit MESSAGE: committable
     git commit -m "{{MESSAGE}}"
 
+# execute benchmarks tests only, in benchmark mode
+benchmarks:
+    pytest --benchmark-enable --benchmark-only
+
 # bootstrap documentation
 @doc-setup:
     @echo Setting up documentation...
