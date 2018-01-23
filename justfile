@@ -20,7 +20,7 @@ setup:
     {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pip install -r requirements.txt
     @echo Now please activate the virtualenv, then call "just doc-setup".
 
-# statically check the codebase
+# statically check the codebase (mypy, flake8, pylint, isort)
 @lint:
     {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m mypy src
     echo "mypy  : OK"
