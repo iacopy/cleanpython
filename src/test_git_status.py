@@ -2,6 +2,7 @@
 Test git_status module.
 """
 from unittest import mock
+
 import pytest  # type: ignore
 
 import git_status

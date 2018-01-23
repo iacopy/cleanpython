@@ -9,7 +9,6 @@ import sys
 from collections import defaultdict
 from typing import Dict, List
 
-
 ST_CLEAN = 'clean'
 ST_INDEX = 'index'
 ST_DIRTY = 'dirty'
