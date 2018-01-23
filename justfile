@@ -28,6 +28,9 @@ setup:
     echo "flake8: OK"
     {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pylint src
     echo "pylint: OK"
+    # Auto-fix imports with isort -> worktree become unclean if needed
+    {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m isort --recursive src
+    echo "isort : OK"
 
 # run tests
 test:
