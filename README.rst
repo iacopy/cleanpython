@@ -4,6 +4,42 @@ Kooality
 A python project template with useful batteries included to
 help you to write clean, tested, quality code with best practices.
 
+Based on `python3`, `git` and `just`.
+
+
+Usage
+^^^^^
+
+Setup:
+
+- git clone this repository
+- setup the virtualenv
+    - `virtualenv -p python3 ~/.virtualenvs/yourprojectname`
+    - `source ~/.virtualenvs/yourprojectname/bin/activate`
+    - `pip install -r requirements.txt`
+
+Minimal workflow:
+
+- coding
+- add your files to git index
+- `just commit "your commit message"`
+
+When you `just commit`, all your codebase is linted and tested before actually commit it.
+If any check fail, the commit is aborted. You don't want to commit broken code, isn't it?
+
+Create and open your HTML test coverage:
+
+    just coverage
+
+Create your HTML documentation:
+
+    just doc
+
+Run benchmarks (you have to write down them before :) ):
+
+    just benchmarks
+
+
 Quality code has to be working and easy to mantain.
 
 - working ⇨ ~no bugs ⇨ tested ("untested code is broken code")
