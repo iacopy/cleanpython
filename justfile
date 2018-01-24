@@ -32,12 +32,16 @@ setup:
     {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m isort --recursive src
     echo "isort : OK"
 
-# run tests
-test:
-    pytest
+# run tests without coverage (just a pure pytest wrapper)
+qtest +ARGS="":
+    {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pytest {{ARGS}}
 
-# open coverage html index
-coverage: test
+# run tests with coverage
+_test-cov:
+    pytest --cov --cov-report=html
+
+# test and open resulting coverage html index
+coverage: _test-cov
     open htmlcov/index.html
 
 # check coverage satisfies requirements
@@ -48,9 +52,9 @@ coverage: test
 # Quality Assurance: code analysis, test and coverage
 @qa:
     just lint
-    just test
+    just _test-cov
     just check-coverage
-    echo Quality check OK.
+    echo Quality check OK!
 
 # ensure that git repo is clean for commit
 # (contains only stuff in the index, not in the worktree)
