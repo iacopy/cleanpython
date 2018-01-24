@@ -18,7 +18,7 @@ setup:
     @echo Create virtualenv and use it to install requirements
     virtualenv -p python3 {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}
     {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pip install -r requirements.txt
-    @echo Now please activate the virtualenv, then call "just doc-setup".
+    @echo Now please activate the virtualenv, then call \"just doc\".
 
 # statically check the codebase (mypy, flake8, pylint, isort)
 @lint:
@@ -72,8 +72,8 @@ benchmarks:
     pytest --benchmark-enable --benchmark-only
 
 # bootstrap documentation
-@doc-setup:
-    @echo Setting up documentation...
+@_setup-doc:
+    echo Setting up documentation...
     sphinx-quickstart -a "{{AUTHOR}}" -p "{{PROJECT_NAME}}" -v {{DOC_INIT_VERSION}} -l {{DOC_LANGUAGE}} --sep --ext-autodoc --ext-coverage --ext-todo --ext-viewcode --no-makefile --no-batchfile ./{{DOC_DIRNAME}}
 
     # move conf to main doc directory instead of its "source"
@@ -81,8 +81,11 @@ benchmarks:
     @echo NB: please uncomment "sys.path.append" line on conf.py and pass "../src" as argument in order to generate the documentation correctly.
     # TODO: automatize this step
 
-# build and open generated documentation
+# setup or build and open generated documentation
 @doc:
+    # Check if setup is needed and call _setup-doc in this case.
+    ls ./{{DOC_DIRNAME}}/conf.py || (just _setup-doc && just _exit "Now edit conf.py and recall just doc to build the documentation.")
+
     echo Auto-generate modules documentation...
     # Positional args from seconds (if any) are paths you want to exclude from docs
     # -f overwrite existing .rst, --private include also "_"-starting attributes.
@@ -101,3 +104,7 @@ cleanup:
 
     # cleanup built documentation
     rm -rf {{DOC_DIRNAME}}/build
+
+# shortcut to exit with a message
+@_exit MESSAGE:
+    echo {{MESSAGE}} && exit 1
