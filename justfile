@@ -1,6 +1,5 @@
 PROJECT_NAME = 'Your Project Name'
 AUTHOR = 'Your Name'
-VIRTUALENV = 'your-venv-name'
 DOC_DIRNAME = 'docs'
 DOC_LANGUAGE = 'en'
 DOC_INIT_VERSION = '0.1'
@@ -12,9 +11,11 @@ MIN_COVERAGE = '100'
 # just list available recipes
 @welcome:
     just --list
+    echo NB:
+    echo Make sure your virtualenv is activated before use recipes.
 
 # bootstrap your project
-setup:
+setup VIRTUALENV:
     @echo Create virtualenv and use it to install requirements
     virtualenv -p python3 {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}
     {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pip install -r requirements.txt
@@ -22,19 +23,19 @@ setup:
 
 # statically check the codebase (mypy, flake8, pylint, isort)
 @lint:
-    {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m mypy src
+    mypy src
     echo "mypy  : OK"
-    {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m flake8 src
+    flake8 src
     echo "flake8: OK"
-    {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pylint src
+    pylint src
     echo "pylint: OK"
     # Auto-fix imports with isort -> worktree become unclean if needed
-    {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m isort --recursive src
+    isort --recursive src
     echo "isort : OK"
 
 # run tests without coverage (just a pure pytest wrapper)
 qtest +ARGS="":
-    {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pytest {{ARGS}}
+    pytest {{ARGS}}
 
 # run tests with coverage
 _test-cov:
