@@ -60,7 +60,7 @@ coverage: _test-cov
 # ensure that git repo is clean for commit
 # (contains only stuff in the index, not in the worktree)
 @_worktree_clean:
-    python src/git_status.py index || just _exit "Your worktree is not clean or you don\'t have changes to commit."
+    python src/git_status.py index || just _fail "Your worktree is not clean or you don\'t have changes to commit."
     echo git-staged files and clean worktree.
 
 # require quality and no garbage in the repo worktree
@@ -110,6 +110,11 @@ cleanup:
     # cleanup built documentation
     rm -rf {{DOC_DIRNAME}}/build
 
-# shortcut to exit with a message
+# shortcut to exit with a message and error exit code
 @_exit MESSAGE:
     echo {{MESSAGE}} && exit 1
+
+# error exit with fail alert message and error exit code
+# TODO: decorate with red
+@_fail MESSAGE:
+    echo FAIL. {{MESSAGE}} && exit 1
