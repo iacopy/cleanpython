@@ -60,12 +60,12 @@ coverage: _test-cov
 # ensure that git repo is clean for commit
 # (contains only stuff in the index, not in the worktree)
 @_worktree_clean:
-    python src/git_status.py index
+    python src/git_status.py index || just _exit "Your worktree is not clean or you don\'t have changes to commit."
     echo git-staged files and clean worktree.
 
 # require quality and no garbage in the repo worktree
-@committable: qa
-    just _worktree_clean
+@committable: _worktree_clean
+    just qa
     echo Your code seems committable.
 
 # git commit if your code is committable
