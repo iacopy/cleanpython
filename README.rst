@@ -1,6 +1,6 @@
-========
-Kooality
-========
+===========
+CleanPython
+===========
 
 A Python3_ project template with several useful, standard, integrated
 batteries included to help you to write clean, tested, quality code.
@@ -22,8 +22,8 @@ Setup
 
 ::
 
-    $ git clone git@github.com:iacopy/kooality.git
-    $ mv kooality yourprojectname
+    $ git clone git@github.com:iacopy/cleanpython.git
+    $ mv cleanpython yourprojectname
     $ virtualenv -p python3 ~/.virtualenvs/yourprojectname
     $ source ~/.virtualenvs/yourprojectname/bin/activate
     $ cd yourprojectname
