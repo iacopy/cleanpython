@@ -45,6 +45,14 @@ Minimal workflow
 When you ``just commit``, all your codebase is linted and tested before actually commit it.
 If any check fail, the commit is aborted. You don't want to commit broken code, isn't it?
 
+
+Recipes
+~~~~~~~
+
+Here are ``just`` recipes that are *not* called automatically
+when you call ``just commit`` or ``just qa``.
+
+
 Create and open your HTML test coverage::
 
     just coverage
@@ -56,6 +64,14 @@ Create your HTML documentation::
 Run benchmarks (you have to write down them before :) )::
 
     just benchmarks
+
+Run tests without coverage.py overhead::
+
+    just test
+
+Remove build artifacts::
+
+    just cleanup
 
 
 Tools
