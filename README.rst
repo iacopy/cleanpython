@@ -104,12 +104,9 @@ Tools
 - just_
     - rules them all together in your workflow
     - `just commit MESSAGE` allows you to commit only clean and tested code
-- Cython_
-    - improve performance by compiling Python code in C
 
 
 .. _Coverage.py: http://coverage.readthedocs.io
-.. _Cython: http://cython.readthedocs.io
 .. _Flake8: http://flake8.readthedocs.io
 .. _Git: https://git-scm.com
 .. _Hypothesis: https://hypothesis.readthedocs.io
