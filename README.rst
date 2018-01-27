@@ -17,20 +17,30 @@ Requirements
 Usage
 -----
 
-Setup:
+Setup
+~~~~~
 
-- git clone this repository
-- setup the virtualenv
-    - ``virtualenv -p python3 ~/.virtualenvs/yourprojectname``
-    - ``source ~/.virtualenvs/yourprojectname/bin/activate``
-    - ``pip install -r requirements.txt``
+::
 
-Minimal workflow:
+    $ git clone git@github.com:iacopy/kooality.git
+    $ mv kooality yourprojectname
+    $ virtualenv -p python3 ~/.virtualenvs/yourprojectname
+    $ source ~/.virtualenvs/yourprojectname/bin/activate
+    $ cd yourprojectname
+    $ pip install -r requirements.txt
+
+Test setup::
+
+    $ just     # list recipes
+    $ just qa  # complete code quality assurance check
+
+Minimal workflow
+~~~~~~~~~~~~~~~~
 
 1. write test first (TDD_)
 2. write code until test pass
 3. add your files to git index
-4. ``just commit "your commit message"``
+4. ``just commit <your commit message>``
 
 When you ``just commit``, all your codebase is linted and tested before actually commit it.
 If any check fail, the commit is aborted. You don't want to commit broken code, isn't it?
