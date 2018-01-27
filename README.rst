@@ -5,6 +5,13 @@ CleanPython
 A Python3_ project template with several useful, standard, integrated
 batteries included to help you to write clean, tested, quality code.
 
+If you are starting a Python3 project from scratch,
+and you need to write robust and clean code,
+this repository could help you.
+
+What is and why clean code matters? Read `here`__.
+
+__ CleanCodeArticle_
 
 Requirements
 ------------
@@ -42,9 +49,22 @@ Minimal workflow
 3. add your files to git index
 4. ``just commit <your commit message>``
 
-When you ``just commit``, all your codebase is linted and tested before actually commit it.
-If any check fail, the commit is aborted. You don't want to commit broken code, isn't it?
+When you launch ``just commit``, all your codebase is linted and tested before actually commit it.
 
+In case of any fail, the commit is aborted.
+
+For example:
+
+* are there broken tests? Fail.
+* are you trying to escape by avoiding to write tests? Fail.
+* your function is too long? Fail.
+* your class contains too much methods or attributes? Fail.
+* your code is too complex? Fail.
+* your code follows random style? Fail.
+
+You don't want waste time committing broken code, isn't it?
+
+Remember: prevention is better than cure.
 
 Recipes
 ~~~~~~~
@@ -74,8 +94,8 @@ Remove build artifacts::
     just cleanup
 
 
-Tools
------
+Just integrated tools
+---------------------
 
 - Pytest_
     - useful to write data driven tests
@@ -106,6 +126,7 @@ Tools
     - `just commit MESSAGE` allows you to commit only clean and tested code
 
 
+.. _CleanCodeArticle: https://www.butterfly.com.au/blog/website-development/clean-high-quality-code-a-guide-on-how-to-become-a-better-programmer
 .. _Coverage.py: http://coverage.readthedocs.io
 .. _Flake8: http://flake8.readthedocs.io
 .. _Git: https://git-scm.com
