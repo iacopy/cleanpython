@@ -65,10 +65,10 @@ Tools
 - Flake8_
     - helps to write standard, clean and documented code
     - wraps pep8, pyflakes, McCabe Complexity analysis
-    - suports plugins
+    - supports plugins
 - Sphinx_
     - produce html documentation
-    - can auto-extract documentation from yout codebase
+    - can auto-extract documentation from your codebase
 - just_
     - rules them all together in your workflow
     - `just commit MESSAGE` allows you to commit only clean and tested code
