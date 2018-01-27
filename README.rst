@@ -53,6 +53,10 @@ Here are ``just`` recipes that are *not* called automatically
 when you call ``just commit`` or ``just qa``.
 
 
+Run tests without coverage.py overhead::
+
+    just test
+
 Create and open your HTML test coverage::
 
     just coverage
@@ -64,10 +68,6 @@ Create your HTML documentation::
 Run benchmarks (you have to write down them before :) )::
 
     just benchmarks
-
-Run tests without coverage.py overhead::
-
-    just test
 
 Remove build artifacts::
 
