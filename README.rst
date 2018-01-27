@@ -2,10 +2,16 @@
 Kooality
 ========
 
-A python project template with useful batteries included to
-help you to write clean, tested, quality code with best practices.
+A Python3_ project template with several useful, standard, integrated
+batteries included to help you to write clean, tested, quality code.
 
-Based on Python3_, Git_ and just_.
+
+Requirements
+------------
+
+* Git_
+* Python3_
+* just_
 
 
 Usage
