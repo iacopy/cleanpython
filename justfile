@@ -23,7 +23,7 @@ setup VIRTUALENV:
 
 # statically check the codebase (mypy, flake8, pylint, isort)
 @lint:
-    mypy src
+    mypy --ignore-missing-imports src
     echo "mypy  : OK"
     flake8 src
     echo "flake8: OK"
