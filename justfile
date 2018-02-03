@@ -42,8 +42,8 @@ _test-cov:
     pytest --cov --cov-report=html
 
 # test and open resulting coverage html index
-coverage: _test-cov
-    open htmlcov/index.html
+@coverage: _test-cov
+    open htmlcov/index.html || xdg-open htmlcov/index.html
 
 # check coverage satisfies requirements
 @check-coverage:
