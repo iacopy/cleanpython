@@ -38,7 +38,7 @@ qtest +ARGS="":
     pytest {{ARGS}}
 
 # run tests with coverage
-_test-cov:
+@_test-cov:
     pytest --cov --cov-report=html
 
 # test and open resulting coverage html index
@@ -69,11 +69,11 @@ _test-cov:
     echo Your code seems committable.
 
 # git commit if your code is committable
-commit MESSAGE: committable
+@commit MESSAGE: committable
     git commit -m "{{MESSAGE}}"
 
 # execute benchmarks tests only, in benchmark mode
-benchmarks:
+@benchmarks:
     pytest --benchmark-enable --benchmark-only
 
 # bootstrap documentation
