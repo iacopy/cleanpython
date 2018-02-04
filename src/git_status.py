@@ -57,6 +57,39 @@ def str_status(git_status: Dict[str, List[str]]) -> str:
     return ST_INDEX
 
 
+def explain_errors(query, git_status):
+    """
+    Explicitly describes the git status error, given the `query`.
+    """
+    error_lines = []
+    if query == 'clean':
+        for place in ('worktree', 'index'):
+            files = git_status.get(place)
+            if files:
+                msg = ('ERROR: {} should be clean, '
+                       'but there are files in:'.format(place))
+                error_lines.append(msg)
+                for file_path in files:
+                    error_lines.append('\t' + file_path)
+    elif query == 'index':
+        worktree_files = git_status.get('worktree')
+        if worktree_files:
+            error_lines.append(
+                'ERROR: worktree should be clean, but there are files in it:')
+            for file_path in worktree_files:
+                error_lines.append('\t' + file_path)
+            error_lines.append('HINT: git add -u  # stage modified files')
+            error_lines.append('HINT: git add --all  # stage everything')
+        if not git_status.get('index'):
+            error_lines.append('ERROR: there are no files in the index.')
+            if worktree_files:
+                error_lines.append('HINT: git add -u  # stage modified files')
+            else:
+                error_lines.append('HINT: Make some changes to your codebase')
+
+    return error_lines
+
+
 def main(args: List[str]) -> int:
     """
     Call git status and convert it as an exit code.
@@ -68,10 +101,13 @@ def main(args: List[str]) -> int:
     With arguments, return 0 only in case of status matches the query.
     Allowed queries: 'clean', 'index' or 'dirty'.
     """
-    status = str_status(get_git_status())
+    git_status = get_git_status()
+    status = str_status(git_status)
     query = args[0] if args else ''
     if query:
         # Return 0 if status matches the query, 1 otherwise
+        if query != status:
+            print('\n'.join(explain_errors(query, git_status)))
         return int(query != status)
 
     # print status and return the exit code related to the status
