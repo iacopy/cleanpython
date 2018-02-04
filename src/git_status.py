@@ -80,5 +80,5 @@ def main(args: List[str]) -> int:
     return EXIT_DICT[status]
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == '__main__':
     sys.exit(main(sys.argv[1:]))

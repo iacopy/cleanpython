@@ -2,3 +2,12 @@
 branch = True
 # avoid to report non-own files
 source = src
+
+[report]
+# Regexes for lines to exclude from consideration
+exclude_lines =
+    # Have to re-enable the standard pragma:
+    pragma: no cover
+
+    # Don't complain if non-runnable code isn't run:
+    if __name__ == .__main__.:
