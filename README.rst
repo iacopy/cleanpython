@@ -3,13 +3,14 @@ CleanPython
 ===========
 
 A Python3_ project template with several useful, standard, integrated
-batteries included to help you to write clean, tested, quality code.
+batteries included to help you to write clean, tested, quality code,
+following the `Zen of Python`_.
 
 If you are starting a Python3 project from scratch,
 and you need to write robust and clean code,
 this repository could help you.
 
-What is and why clean code matters? Read `here`__.
+What is and why *clean code* matters? Read `here`__.
 
 __ CleanCodeArticle_
 
@@ -46,7 +47,7 @@ Minimal workflow
 
 1. write test first (TDD_)
 2. write code until test pass
-3. add your files to git index
+3. add your files to git index (e.g. ``git add -u``)
 4. ``just commit <your commit message>``
 
 When you launch ``just commit``, all your codebase is linted and tested before actually commit it.
@@ -123,8 +124,42 @@ Just integrated tools
     - can auto-extract documentation from your codebase
 - just_
     - rules them all together in your workflow
-    - `just commit MESSAGE` allows you to commit only clean and tested code
+    - ``just commit MESSAGE`` allows you to commit only clean and tested code
 
+
+Zen of Python
+-------------
+
+The highlighted lines are the ones that, mostly, ``CleanPython``
+(**explicitly** or *implicitly*) tries to help to reach.
+
+1. **Beautiful is better than ugly.**
+2. **Explicit is better than implicit.**
+3. **Simple is better than complex.**
+4. *Complex is better than complicated.*
+5. Flat is better than nested.
+6. Sparse is better than dense.
+7. **Readability counts.**
+8. **Special cases aren't special enough to break the rules.**
+9. *Although practicality beats purity.*
+10. **Errors should never pass silently.**
+11. *Unless explicitly silenced.*
+12. *In the face of ambiguity, refuse the temptation to guess.*
+13. *There should be one-- and preferably only one --obvious way to do it.*
+14. Although that way may not be obvious at first unless you're Dutch.
+15. **Now is better than never.**
+16. Although never is often better than *right* now.
+17. If the implementation is hard to explain, it's a bad idea.
+18. If the implementation is easy to explain, it may be a good idea.
+19. Namespaces are one honking great idea -- let's do more of those!
+
+Legend
+~~~~~~
+
+**bold**
+    explicitly, strongly targeted by ``CleanPython``
+*italic*
+    implicitly or indirectly or weakly targeted by ``CleanPython``
 
 .. _CleanCodeArticle: https://www.butterfly.com.au/blog/website-development/clean-high-quality-code-a-guide-on-how-to-become-a-better-programmer
 .. _Coverage.py: http://coverage.readthedocs.io
