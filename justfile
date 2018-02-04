@@ -119,6 +119,12 @@ cleanup:
     # cleanup built documentation
     rm -rf {{DOC_DIRNAME}}/build
 
+    # cache
+    rm -rf .benchmarks
+    rm -rf .cache
+    rm -rf .hypothesis
+    rm -rf .mypy_cache
+
 # shortcut to exit with a message and error exit code
 @_exit MESSAGE:
     echo {{MESSAGE}} && exit 1
