@@ -21,6 +21,11 @@ setup VIRTUALENV:
     {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pip install -r requirements.txt
     @echo Now please activate the virtualenv, then call \"just doc\".
 
+# fix python imports (config in .isort.cfg)
+@imports:
+    # Auto-fix imports with isort -> worktree become unclean if needed
+    isort --recursive .  # equivalent to isort -r . or isort **/*.py
+
 # statically check the codebase (mypy, flake8, pylint, isort)
 @lint:
     mypy --ignore-missing-imports src
@@ -30,7 +35,7 @@ setup VIRTUALENV:
     pylint src
     echo "pylint: OK"
     # Auto-fix imports with isort -> worktree become unclean if needed
-    isort --recursive src
+    isort **/*.py -c -vb || just _fail "fix python imports by running \'just imports\'"
     echo "isort : OK"
 
 # run tests without coverage (just a pure pytest wrapper)
