@@ -39,7 +39,7 @@ setup VIRTUALENV:
     pylint src
     echo "pylint: OK"
     # Auto-fix imports with isort -> worktree become unclean if needed
-    isort **/*.py -c -vb || just _fail "fix python imports by running \'just imports\'"
+    isort **/*.py -c || just _fail "fix python imports by running \'just imports\'"
     echo "isort : OK"
 
 # run tests without coverage (just a pure pytest wrapper)
