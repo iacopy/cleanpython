@@ -14,6 +14,10 @@ MIN_COVERAGE = '100'
     echo =========================================================================================
     echo NB: Make sure your virtualenv is activated before use recipes.
 
+# just show the Zen of Python, by Tim Peters
+@zen:
+    python -m this
+
 # bootstrap your project
 setup VIRTUALENV:
     @echo Create virtualenv and use it to install requirements
