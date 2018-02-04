@@ -1,10 +1,13 @@
 """
 Benchmark tests.
 """
+# Standard Library
 import string
 
+# 3rd party
 import pytest  # type: ignore
 
+# My stuff
 from samples import sample_module
 
 

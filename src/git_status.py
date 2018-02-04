@@ -4,6 +4,7 @@ With arguments ask if git status is exactly mathes the query,
 else prints status and returns 0 exit code only in case of
 no files in index nor untracked.
 """
+# Standard Library
 import subprocess
 import sys
 from collections import defaultdict

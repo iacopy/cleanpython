@@ -1,10 +1,13 @@
 """
 Test git_status module.
 """
+# Standard Library
 from unittest import mock
 
+# 3rd party
 import pytest  # type: ignore
 
+# My stuff
 import git_status
 
 

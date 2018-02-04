@@ -3,9 +3,11 @@ Some hypothesis sample tests.
 
 See http://hypothesis.works/
 """
+# 3rd party
 from hypothesis import strategies as st
 from hypothesis import given
 
+# My stuff
 from samples.sample_module import reverse_manually
 
 
