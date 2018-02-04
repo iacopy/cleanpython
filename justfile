@@ -11,8 +11,8 @@ MIN_COVERAGE = '100'
 # just list available recipes
 @welcome:
     just --list
-    echo NB:
-    echo Make sure your virtualenv is activated before use recipes.
+    echo =========================================================================================
+    echo NB: Make sure your virtualenv is activated before use recipes.
 
 # bootstrap your project
 setup VIRTUALENV:
