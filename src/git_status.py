@@ -7,7 +7,8 @@ no files in index nor untracked.
 import subprocess
 import sys
 from collections import defaultdict
-from typing import Dict, List
+from typing import Dict
+from typing import List
 
 ST_CLEAN = 'clean'
 ST_INDEX = 'index'
