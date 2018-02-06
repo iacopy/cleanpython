@@ -26,7 +26,7 @@ setup VIRTUALENV:
     @echo Now please activate the virtualenv, then call \"just doc\".
 
 # fix python imports (config in .isort.cfg)
-@imports:
+@isort:
     # Auto-fix imports with isort -> worktree become unclean if needed
     isort --recursive .  # equivalent to isort -r . or isort **/*.py
 
@@ -39,7 +39,7 @@ setup VIRTUALENV:
     pylint src
     echo "pylint: OK"
     # Auto-fix imports with isort -> worktree become unclean if needed
-    isort **/*.py -c || just _fail "fix python imports by running \'just imports\'"
+    isort **/*.py -c || just _fail "fix python imports by running \'just isort\'"
     echo "isort : OK"
 
 # run tests without coverage (just a pure pytest wrapper)
