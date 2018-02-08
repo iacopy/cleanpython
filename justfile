@@ -124,6 +124,7 @@ cleanup:
     rm -rf .cache
     rm -rf .hypothesis
     rm -rf .mypy_cache
+    rm -rf .pytest_cache
 
 # shortcut to exit with a message and error exit code
 @_exit MESSAGE:
