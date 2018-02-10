@@ -1,0 +1,14 @@
+# Travis CI continuous integration configuration file
+
+language: python
+python:
+  - "3.6"
+
+before_install:
+  # install Just
+  - curl https://sh.rustup.rs -sSf | sh -s -- -y
+  - export PATH="$HOME/.cargo/bin:$PATH"
+  - cargo install just
+
+script:
+  - just qa
