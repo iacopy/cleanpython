@@ -42,6 +42,11 @@ setup VIRTUALENV:
     isort **/*.py -c || just _fail "fix python imports by running \'just isort\'"
     echo "isort : OK"
 
+# auto fix imports and pep8 coding style
+@autolint:
+    just isort
+    autopep8 --in-place -r .
+
 # run tests without coverage (just a pure pytest wrapper)
 qtest +ARGS="":
     pytest {{ARGS}}
