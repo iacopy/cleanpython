@@ -2,6 +2,9 @@
 CleanPython
 ===========
 
+.. image:: https://travis-ci.org/iacopy/cleanpython.svg?branch=master
+    :target: https://travis-ci.org/iacopy/cleanpython
+
 A Python3_ project template with several useful, standard, integrated
 batteries included to help you to write clean, tested, quality code,
 following the `Zen of Python`_.
