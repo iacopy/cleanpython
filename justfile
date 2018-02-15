@@ -43,12 +43,12 @@ setup VIRTUALENV:
     echo "isort : OK"
 
 # auto fix imports and pep8 coding style
-@autolint:
+@fix:
     just isort
     autopep8 --in-place -r .
 
 # run tests without coverage (just a pure pytest wrapper)
-qtest +ARGS="":
+test +ARGS="":
     pytest {{ARGS}}
 
 # run tests with coverage
@@ -56,11 +56,11 @@ qtest +ARGS="":
     pytest --cov --cov-report=html
 
 # test and open resulting coverage html index
-@coverage: _test-cov
+@cov: _test-cov
     open htmlcov/index.html || xdg-open htmlcov/index.html
 
 # check coverage satisfies requirements
-@check-coverage:
+@check-cov:
     coverage report --fail-under {{MIN_COVERAGE}}
     echo "test coverage: OK"
 
@@ -68,7 +68,7 @@ qtest +ARGS="":
 @qa:
     just lint
     just _test-cov
-    just check-coverage
+    just check-cov
     echo Quality check OK!
 
 # ensure that working tree is clean
