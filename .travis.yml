@@ -11,5 +11,5 @@ before_install:
   - cargo install just
 
 script:
-  - just qa
+  - just checkup
   - just benchmarks

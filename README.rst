@@ -42,8 +42,8 @@ Setup
 
 Test setup::
 
-    $ just     # list recipes
-    $ just qa  # complete code quality assurance check
+    $ just          # list recipes
+    $ just checkup  # complete code quality assurance check
 
 Minimal workflow
 ~~~~~~~~~~~~~~~~
@@ -74,7 +74,7 @@ Recipes
 ~~~~~~~
 
 Here are ``just`` recipes that are *not* called automatically
-when you call ``just commit`` or ``just qa``.
+when you call ``just commit`` or ``just checkup``.
 
 
 Run tests without coverage.py overhead::

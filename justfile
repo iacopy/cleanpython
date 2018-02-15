@@ -54,8 +54,8 @@ setup VIRTUALENV:
     coverage report --fail-under {{MIN_COVERAGE}}
     echo "test coverage: OK"
 
-# Quality Assurance: code analysis, test and coverage
-@qa:
+# complete checkup: code analysis, tests and coverage
+@checkup:
     just lint
     just _test-cov
     just _check-cov
@@ -73,7 +73,7 @@ setup VIRTUALENV:
 
 # require quality and no garbage in the repo worktree
 @_committable: _index-only
-    just qa
+    just checkup
     echo Your code seems committable.
 
 # git commit (only if your code is committable)
@@ -82,7 +82,7 @@ setup VIRTUALENV:
     just clean
 
 # check and git push if everything is OK
-@push: _working-tree-clean qa clean
+@push: _working-tree-clean checkup clean
     git push
 
 # execute benchmarks tests only, in benchmark mode.
