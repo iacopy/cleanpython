@@ -25,16 +25,28 @@ setup VIRTUALENV:
     {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pip install -r requirements.txt
     @echo Now please activate the virtualenv, then call \"just doc\".
 
-# statically check the codebase (mypy, flake8, pylint, isort)
-@lint:
+@_mypy:
     mypy --ignore-missing-imports src
     echo "mypy  : OK"
+
+@_flake8:
     flake8 src
     echo "flake8: OK"
+
+@_pylint:
     pylint src
     echo "pylint: OK"
+
+@_isort:
     isort -c -r . || just _fail "fix imports by calling \'just fix\'"
-    echo "isort : OK"
+    echo "isort:  OK"
+
+# statically check the codebase (mypy, flake8, pylint, isort)
+@lint:
+    just _mypy
+    just _flake8
+    just _pylint
+    just _isort
 
 # auto fix imports and pep8 coding style
 @fix:
