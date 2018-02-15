@@ -25,11 +25,6 @@ setup VIRTUALENV:
     {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pip install -r requirements.txt
     @echo Now please activate the virtualenv, then call \"just doc\".
 
-# fix python imports (config in .isort.cfg)
-@isort:
-    # Auto-fix imports with isort -> worktree become unclean if needed
-    isort --recursive .  # equivalent to isort -r . or isort **/*.py
-
 # statically check the codebase (mypy, flake8, pylint, isort)
 @lint:
     mypy --ignore-missing-imports src
@@ -38,18 +33,13 @@ setup VIRTUALENV:
     echo "flake8: OK"
     pylint src
     echo "pylint: OK"
-    # Auto-fix imports with isort -> worktree become unclean if needed
-    isort **/*.py -c || just _fail "fix python imports by running \'just isort\'"
+    isort **/*.py -c || just _fail "fix imports (and style) by running \'just fix\'"
     echo "isort : OK"
 
 # auto fix imports and pep8 coding style
 @fix:
     just isort
     autopep8 --in-place -r .
-
-# run tests without coverage (just a pure pytest wrapper)
-test +ARGS="":
-    pytest {{ARGS}}
 
 # run tests with coverage
 @_test-cov:
@@ -123,22 +113,6 @@ test +ARGS="":
     sphinx-build -b html -c ./{{DOC_DIRNAME}} ./{{DOC_DIRNAME}}/source ./{{DOC_DIRNAME}}/build/html -v
 
     open {{DOC_DIRNAME}}/build/html/index.html
-
-# remove artifacts (pyc, __pycache__, coverage stuff, built docs)
-cleanup:
-    rm -rf htmlcov
-    coverage erase
-    rm -rf build
-    # cleanup built documentation
-    rm -rf {{DOC_DIRNAME}}/build
-
-    # cache
-    rm -rf .benchmarks
-    rm -rf .cache
-    rm -rf .hypothesis
-    rm -rf .mypy_cache
-    rm -rf .pytest_cache
-    find . -type d -name __pycache__ | xargs rm -rfv
 
 # remove untracked artifacts (git clean -fdx)
 clean:
