@@ -59,8 +59,8 @@ test +ARGS="":
 @cov: _test-cov
     open htmlcov/index.html || xdg-open htmlcov/index.html
 
-# check coverage satisfies requirements
-@check-cov:
+# check if coverage satisfies requirements
+@_check-cov:
     coverage report --fail-under {{MIN_COVERAGE}}
     echo "test coverage: OK"
 
@@ -68,7 +68,7 @@ test +ARGS="":
 @qa:
     just lint
     just _test-cov
-    just check-cov
+    just _check-cov
     echo Quality check OK!
 
 # ensure that working tree is clean
@@ -82,12 +82,12 @@ test +ARGS="":
     echo git-staged files and clean worktree.
 
 # require quality and no garbage in the repo worktree
-@committable: _index-only
+@_committable: _index-only
     just qa
     echo Your code seems committable.
 
 # git commit (only if your code is committable)
-@commit MESSAGE: committable
+@commit MESSAGE: _committable
     git commit -m "{{MESSAGE}}"
     just clean
 
