@@ -10,6 +10,8 @@ from functools import partial
 # 3rd party
 import numpy as np
 import pytest
+
+# My stuff
 from hamming.hamming import calculate
 from hamming.hamming import calculate_c_style
 from hamming.hamming import calculate_np_array
@@ -47,9 +49,9 @@ CASE = build_random_test_data(1, 100)[0]
     (partial(array.array, 'b'), calculate_c_style),
     (partial(array.array, 'b'), calculate),
     (np.array, calculate_np_array),
-    ], ids=['list-c_style', 'list-list_comp',
-            'arrray.array-c_style', 'arrray.array-list_comp',
-            'np.array'])
+], ids=['list-c_style', 'list-list_comp',
+        'arrray.array-c_style', 'arrray.array-list_comp',
+        'np.array'])
 def test_hamming(constructor, calculator, benchmark):
     """
     Parametric data driven benchmark test for hamming function.
