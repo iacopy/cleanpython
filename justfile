@@ -33,7 +33,7 @@ setup VIRTUALENV:
     echo "flake8: OK"
     pylint src
     echo "pylint: OK"
-    isort **/*.py -c || just _fail "fix imports (and style) by running \'just fix\'"
+    isort -c -r . || just _fail "fix imports by calling \'just fix\'"
     echo "isort : OK"
 
 # auto fix imports and pep8 coding style
