@@ -30,7 +30,7 @@ setup VIRTUALENV:
     echo "mypy  : OK"
 
 @_flake8:
-    flake8 src
+    flake8 .
     echo "flake8: OK"
 
 @_pylint:
@@ -55,7 +55,7 @@ setup VIRTUALENV:
 
 # run tests with coverage
 @_test-cov:
-    pytest --cov --cov-report=html
+    pytest --cov --cov-report=html .
 
 # test and open resulting coverage html index
 @cov: _test-cov
@@ -99,7 +99,7 @@ setup VIRTUALENV:
 
 # execute benchmarks tests only, in benchmark mode.
 @benchmarks K_SELECTOR="test":
-    pytest --benchmark-enable --benchmark-only -k {{K_SELECTOR}}
+    pytest --benchmark-enable --benchmark-only -k {{K_SELECTOR}} .
 
 # bootstrap documentation
 @_setup-doc:
