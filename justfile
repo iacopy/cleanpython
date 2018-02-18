@@ -38,7 +38,7 @@ setup VIRTUALENV:
     echo "pylint: OK"
 
 @_isort:
-    isort -c -r . || just _fail "fix imports by calling \'just fix\'"
+    isort --check-only --recursive --quiet . || just _fail "fix imports by calling \'just fix\'"
     echo "isort:  OK"
 
 # statically check the codebase (mypy, flake8, pylint, isort)
