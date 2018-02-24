@@ -13,4 +13,4 @@ before_install:
 script:
   - just checkup
   - just benchmarks
-  - just doc
+  - just _build-doc

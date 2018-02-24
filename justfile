@@ -112,7 +112,7 @@ setup VIRTUALENV:
     # TODO: automatize this step
 
 # setup or build and open generated documentation
-@doc:
+@_build-doc:
     # Check if setup is needed and call _setup-doc in this case.
     ls ./{{DOC_DIRNAME}}/conf.py || (just _setup-doc && just _exit "Now edit conf.py and recall just doc to build the documentation.")
 
@@ -124,8 +124,10 @@ setup VIRTUALENV:
     echo Building documentation...
     sphinx-build -b html -c ./{{DOC_DIRNAME}} ./{{DOC_DIRNAME}}/source ./{{DOC_DIRNAME}}/build/html -v
 
+# build and open HTML documentation
+@doc: _build-doc
     # Open generated doc if possible but without fail otherwise
-    just _open-nofail {{DOC_DIRNAME}}/build/html/index.html
+    just _open {{DOC_DIRNAME}}/build/html/index.html
 
 # remove untracked artifacts (git clean -fdx)
 clean:
