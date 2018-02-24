@@ -59,7 +59,7 @@ setup VIRTUALENV:
 
 # test and open resulting coverage html index
 @cov: _test-cov
-    open htmlcov/index.html || xdg-open htmlcov/index.html
+    just _open htmlcov/index.html
 
 # check if coverage satisfies requirements
 @_check-cov:
@@ -124,13 +124,22 @@ setup VIRTUALENV:
     echo Building documentation...
     sphinx-build -b html -c ./{{DOC_DIRNAME}} ./{{DOC_DIRNAME}}/source ./{{DOC_DIRNAME}}/build/html -v
 
-    open {{DOC_DIRNAME}}/build/html/index.html
+    # Open generated doc if possible but without fail otherwise
+    just _open-nofail {{DOC_DIRNAME}}/build/html/index.html
 
 # remove untracked artifacts (git clean -fdx)
 clean:
     # NB: after this, you will need to recompile cython files
     # (\"python setup.py install\" or \"just compile\")
     git clean -fdx
+
+# open a file if possible, else print an alert but do NOT fail
+@_open-nofail FILE:
+    open {{FILE}} || xdg-open {{FILE}} || just _info "Could not open {{FILE}}"
+
+# open a file if possible, else exit with a fail
+@_open FILE:
+    open {{FILE}} || xdg-open {{FILE}}
 
 # shortcut to exit with a message and error exit code
 @_exit MESSAGE:
@@ -140,3 +149,6 @@ clean:
 # TODO: decorate with red
 @_fail MESSAGE:
     echo FAIL. {{MESSAGE}} && exit 1
+
+@_info MESSAGE:
+    echo {{MESSAGE}} && exit 0
