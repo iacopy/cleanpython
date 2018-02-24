@@ -10,6 +10,8 @@ Welcome to Your Project Name's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   modules
+
 
 
 Indices and tables
