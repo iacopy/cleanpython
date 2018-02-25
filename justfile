@@ -50,7 +50,7 @@ setup VIRTUALENV:
 
 # auto fix imports and pep8 coding style
 @fix:
-    isort -y -r .
+    isort -qy -r .
     autopep8 --in-place -r .
 
 # run tests with coverage
