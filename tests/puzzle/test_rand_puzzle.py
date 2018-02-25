@@ -9,7 +9,7 @@ from hypothesis import given
 from hypothesis.extra.numpy import array_shapes
 
 # My stuff
-import rand_puzzle
+from puzzle import rand_puzzle
 
 TEST_IMAGE = './tests/puzzle/wrgb.png'
 
@@ -57,7 +57,7 @@ def test_random_puzzle():
         ]
     )
 
-    with mock.patch('rand_puzzle.rand_cell') as get_rand_cell:
+    with mock.patch('puzzle.rand_puzzle.rand_cell') as get_rand_cell:
         get_rand_cell.side_effect = [
             (0, 0), (1, 1),
             (0, 1), (0, 0),
@@ -97,7 +97,7 @@ def test_main():
         [149, 149, 29, 29],
     ]
 
-    with mock.patch('rand_puzzle.rand_cell') as get_rand_cell:
+    with mock.patch('puzzle.rand_puzzle.rand_cell') as get_rand_cell:
         get_rand_cell.side_effect = [
             [0, 1], [1, 0],
             [0, 0], [1, 1],

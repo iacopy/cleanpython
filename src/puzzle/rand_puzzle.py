@@ -9,8 +9,7 @@ import sys
 import numpy as np
 from PIL import Image
 
-# My stuff
-from puzzle import swap
+from .puzzle import swap
 
 
 def get_cell_size(shape, super_shape):

@@ -11,7 +11,7 @@ from hypothesis.extra.numpy import array_shapes
 from hypothesis.extra.numpy import arrays
 
 # My stuff
-import puzzle
+from puzzle import puzzle
 
 
 def test_simple_swap():
