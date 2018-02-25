@@ -19,6 +19,7 @@ mccabe==0.6.1
 mypy==0.560
 numpy==1.14.0
 packaging==16.8
+Pillow==5.0.0
 pluggy==0.6.0
 psutil==5.4.3
 py==1.5.2

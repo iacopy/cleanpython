@@ -7,4 +7,6 @@ src
    git_status
    hamming
    main
+   puzzle
+   rand_puzzle
    samples
