@@ -5,6 +5,11 @@ CleanPython
 .. image:: https://travis-ci.org/iacopy/cleanpython.svg?branch=master
     :target: https://travis-ci.org/iacopy/cleanpython
 
+.. image:: https://api.codeclimate.com/v1/badges/142fbb415a2d6f66b804/maintainability
+   :target: https://codeclimate.com/github/iacopy/cleanpython/maintainability
+   :alt: Maintainability
+
+
 A Python3_ project template with several useful, standard, integrated
 batteries included to help you to write clean, tested, quality code,
 following the `Zen of Python`_.
