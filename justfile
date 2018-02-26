@@ -55,10 +55,12 @@ setup VIRTUALENV:
 
 # run tests with coverage
 @_test-cov:
-    pytest --cov --cov-report=html .
+    pytest --cov --cov-report=xml .
 
-# test and open resulting coverage html index
-@cov: _test-cov
+# (run test if no coverage.xml found) create html report and open it
+@cov:
+    ls coverage.xml || just _test-cov
+    coverage html  # create an HTML report
     just _open htmlcov/index.html
 
 # check if coverage satisfies requirements
