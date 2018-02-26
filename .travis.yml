@@ -10,7 +10,21 @@ before_install:
   - export PATH="$HOME/.cargo/bin:$PATH"
   - cargo install just
 
+  # for codecoverage on codeclimate.com
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
 script:
   - just checkup
   - just benchmarks
   - just _build-doc
+
+after_script:
+  # for codecoverage on codeclimate.com
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+env:
+  global:
+    # for codecoverage on codeclimate.com
+    - CC_TEST_REPORTER_ID=495554b5189c33d77f3404148524a617700107caa4fb990963753099aa3fc86c
