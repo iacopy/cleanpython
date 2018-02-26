@@ -1,6 +1,10 @@
 """
 Functions to randomize puzzles
 and save them to disk.
+
+Usage::
+
+    python -m src.puzzle.rand_puzzle <image_file_path>
 """
 # Standard Library
 import sys
@@ -85,18 +89,51 @@ def save_image(ary, dst):
     Image.fromarray(ary).save(dst)
 
 
-def main(src, subdivision_shape=(3, 3), n_swaps=5, dst='outpuzzle.png'):
+def parse_args(args):
+    """
+    Simple positional cli argument parser.
+
+    >>> parse_args(['pippo', '4', '6', 'out.png'])
+    ('pippo', (4, 4), 6, 'out.png')
+    >>> parse_args(['pippo', '4', '6'])
+    ('pippo', (4, 4), 6, 'outpuzzle.png')
+    >>> parse_args(['pippo', '4'])
+    ('pippo', (4, 4), 5, 'outpuzzle.png')
+    >>> parse_args(['pippo'])
+    ('pippo', (3, 3), 5, 'outpuzzle.png')
+    >>> try:
+    ...     parse_args([])
+    ... except Exception as err:
+    ...     print(err)
+    Unexpected number of arguments: 0
+    """
+    sub_shape, n_swaps, dst = (3, 3), 5, 'outpuzzle.png'
+    n_args = len(args)
+    if n_args == 4:
+        src, sub_shape, n_swaps, dst = args[0], (int(args[1]), int(args[1])), int(args[2]), args[3]
+    elif n_args == 3:
+        src, sub_shape, n_swaps = args[0], (int(args[1]), int(args[1])), int(args[2])
+    elif n_args == 2:
+        src, sub_shape = args[0], (int(args[1]), int(args[1]))
+    elif n_args == 1:
+        src = args[0]
+    else:
+        raise Exception('Unexpected number of arguments: {}'.format(n_args))
+    n_swaps = int(n_swaps)
+    return src, sub_shape, n_swaps, dst
+
+
+def main(src, sub_shape=(3, 3), n_swaps=5, dst='outpuzzle.png'):
     """
     Create a random puzzle from a source image.
     """
-    n_swaps = int(n_swaps)
-
-    ary = load_image_as_grayscale(src)
+    ary = load_image(src)
 
     # Let's avoid "ValueError: assignment destination is read-only"
     ary.flags['WRITEABLE'] = True
 
-    cell_sizes = get_cell_size(ary.shape, subdivision_shape)
+    cell_sizes = get_cell_size(ary.shape, sub_shape)
+    # do not support different sizes (only squares)
     cell_size = max(cell_sizes)
 
     random_puzzle(ary, cell_size, n_swaps)
@@ -105,4 +142,4 @@ def main(src, subdivision_shape=(3, 3), n_swaps=5, dst='outpuzzle.png'):
 
 
 if __name__ == '__main__':
-    main(src=sys.argv[1:])
+    main(*parse_args(sys.argv[1:]))
