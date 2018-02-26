@@ -16,10 +16,14 @@ from puzzle import puzzle
 from testdata import ARY_4x4
 from testdata import ARY_4x4_S01
 from testdata import ARY_4x4_S01_S13
+from testdata import ARY_4x4x3
+from testdata import ARY_4x4x3_S01
+from testdata import ARY_4x4x3_S01_S13
 
 
 @pytest.mark.parametrize('initial,intermediate,final', [
     [ARY_4x4, ARY_4x4_S01, ARY_4x4_S01_S13],
+    [ARY_4x4x3, ARY_4x4x3_S01, ARY_4x4x3_S01_S13],
 ])
 def test_simple_swap(initial, intermediate, final):
     """A couple of 2x2 swap tests.

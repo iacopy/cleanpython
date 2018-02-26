@@ -2,6 +2,9 @@
 Puzzle functions.
 """
 
+# Standard Library
+from copy import copy
+
 
 def swap(ary, size, cell_0, cell_1):
     """
@@ -16,6 +19,6 @@ def swap(ary, size, cell_0, cell_1):
     for y_0, y_1 in zip(row_0, row_1):
         for (x_0, x_1) in zip(col_0, col_1):
             # could not managed to do it without tmp
-            tmp = ary[y_0][x_0]
+            tmp = copy(ary[y_0][x_0])
             ary[y_0][x_0] = ary[y_1][x_1]
             ary[y_1][x_1] = tmp
