@@ -9,6 +9,10 @@ CleanPython
    :target: https://codeclimate.com/github/iacopy/cleanpython/maintainability
    :alt: Maintainability
 
+.. image:: https://api.codeclimate.com/v1/badges/142fbb415a2d6f66b804/test_coverage
+   :target: https://codeclimate.com/github/iacopy/cleanpython/test_coverage
+   :alt: Test Coverage
+
 
 A Python3_ project template with several useful, standard, integrated
 batteries included to help you to write clean, tested, quality code,
