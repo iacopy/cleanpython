@@ -14,7 +14,7 @@ from puzzle import rand_puzzle
 TEST_IMAGE = './tests/puzzle/wrgb.png'
 
 
-def test_load_image():
+def test_load_image_grayscale():
     """
     Test png image loading with conversion to grayscale.
 
@@ -26,14 +26,26 @@ def test_load_image():
     """
     ary = rand_puzzle.load_image_as_grayscale(TEST_IMAGE)
     assert ary.shape == (4, 4)
-    # Test white quadrant (top-left)
-    assert ary[:2, :2].tolist() == [[255, 255], [255, 255]]
-    # Test red quadrant (top-right)
-    assert ary[:2, 2:].tolist() == [[76, 76], [76, 76]]
-    # Test green quadrant (bottom-left)
-    assert ary[2:, :2].tolist() == [[149, 149], [149, 149]]
-    # Test blue quadrant (bottom-right)
-    assert ary[2:, 2:].tolist() == [[29, 29], [29, 29]]
+    assert ary.tolist() == [
+        [255, 255, 76, 76],
+        [255, 255, 76, 76],
+        [149, 149, 29, 29],
+        [149, 149, 29, 29],
+    ]
+
+
+def test_load_image_rgba():
+    """
+    Test png image loading to numpy array.
+    """
+    ary = rand_puzzle.load_image(TEST_IMAGE)
+    assert ary.shape == (4, 4, 4)
+    assert ary.tolist() == [
+        [[255, 255, 255, 255], [255, 255, 255, 255], [255, 0, 0, 255], [255, 0, 0, 255]],
+        [[255, 255, 255, 255], [255, 255, 255, 255], [255, 0, 0, 255], [255, 0, 0, 255]],
+        [[0, 255, 0, 255], [0, 255, 0, 255], [0, 0, 255, 255], [0, 0, 255, 255]],
+        [[0, 255, 0, 255], [0, 255, 0, 255], [0, 0, 255, 255], [0, 0, 255, 255]],
+    ]
 
 
 @given(shape=array_shapes(min_dims=2, max_dims=2))

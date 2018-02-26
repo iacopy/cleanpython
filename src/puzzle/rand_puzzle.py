@@ -69,6 +69,15 @@ def load_image_as_grayscale(src):
     return ary
 
 
+def load_image(src):
+    """
+    Open and convert image to array.
+    """
+    image = Image.open(src)
+    ary = np.asarray(image)
+    return ary
+
+
 def save_image(ary, dst):
     """
     Save an `ary` numpy array image to disk in `dst` file path.
