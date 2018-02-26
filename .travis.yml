@@ -22,7 +22,7 @@ script:
 
 after_script:
   # for codecoverage on codeclimate.com
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build -t coverage.py --exit-code $TRAVIS_TEST_RESULT
 
 env:
   global:
