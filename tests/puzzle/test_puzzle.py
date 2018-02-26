@@ -4,6 +4,7 @@ Test about swapping puzzle cells.
 
 # 3rd party
 import numpy as np
+import pytest
 from hypothesis import assume
 from hypothesis import given
 from hypothesis import strategies as st
@@ -12,45 +13,32 @@ from hypothesis.extra.numpy import arrays
 
 # My stuff
 from puzzle import puzzle
+from testdata import ARY_4x4
+from testdata import ARY_4x4_S01
+from testdata import ARY_4x4_S01_S13
 
 
-def test_simple_swap():
+@pytest.mark.parametrize('initial,intermediate,final', [
+    [ARY_4x4, ARY_4x4_S01, ARY_4x4_S01_S13],
+])
+def test_simple_swap(initial, intermediate, final):
     """A couple of 2x2 swap tests.
 
     This test supports the more general 'test_double_swap' in which
     only the final result of a double swap (in many randomized cases) is
     checked, but the result of the first swap can't be checked.
     """
-    ary = np.array(
-        [
-            [0, 1, 2, 3],
-            [4, 5, 6, 7],
-            [8, 9, 10, 11],
-            [12, 13, 14, 15],
-        ]
-    )
+    ary = np.array(initial)
 
     puzzle.swap(ary, 2, (0, 0), (0, 1))
 
     # I'm using array.tolist for the comparison instead of np.array_equal
     # to better visualize in case of fail
-    expected = [
-        [2, 3, 0, 1],
-        [6, 7, 4, 5],
-        [8, 9, 10, 11],
-        [12, 13, 14, 15],
-    ]
-    assert ary.tolist() == expected
+    assert ary.tolist() == intermediate
 
     puzzle.swap(ary, 2, (0, 1), (1, 1))
 
-    expected = [
-        [2, 3, 10, 11],
-        [6, 7, 14, 15],
-        [8, 9, 0, 1],
-        [12, 13, 4, 5],
-    ]
-    assert ary.tolist() == expected
+    assert ary.tolist() == final
 
 
 @st.composite
