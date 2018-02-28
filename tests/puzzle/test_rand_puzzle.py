@@ -191,3 +191,25 @@ def test_main():
 
     # cleanup artifacts
     os.remove(dst)
+
+
+def test_main_random():
+    """
+    This test was created to cover the non-squared ``cell_size`` option branch.
+
+    TODO: add more detailed checks.
+    """
+    dst = 'testout.png'
+
+    rand_puzzle.main(SimpleNamespace(
+        src=TEST_IMAGE,
+        cell_size='1x2',
+        # default
+        dst=dst,
+        cells='auto',
+        swaps=0,
+        pixel=False,
+    ))
+
+    # cleanup artifacts
+    os.remove(dst)
