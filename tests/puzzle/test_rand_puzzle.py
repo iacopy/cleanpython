@@ -1,5 +1,6 @@
 # Standard Library
 import os
+from types import SimpleNamespace
 from unittest import mock
 
 # 3rd party
@@ -41,8 +42,10 @@ def test_load_image_rgba():
     ary = rand_puzzle.load_image(TEST_IMAGE)
     assert ary.shape == (4, 4, 4)
     assert ary.tolist() == [
-        [[255, 255, 255, 255], [255, 255, 255, 255], [255, 0, 0, 255], [255, 0, 0, 255]],
-        [[255, 255, 255, 255], [255, 255, 255, 255], [255, 0, 0, 255], [255, 0, 0, 255]],
+        [[255, 255, 255, 255], [255, 255, 255, 255],
+            [255, 0, 0, 255], [255, 0, 0, 255]],
+        [[255, 255, 255, 255], [255, 255, 255, 255],
+            [255, 0, 0, 255], [255, 0, 0, 255]],
         [[0, 255, 0, 255], [0, 255, 0, 255], [0, 0, 255, 255], [0, 0, 255, 255]],
         [[0, 255, 0, 255], [0, 255, 0, 255], [0, 0, 255, 255], [0, 0, 255, 255]],
     ]
@@ -99,6 +102,51 @@ def test_save_image(data):
     os.remove(dst)
 
 
+@pytest.mark.parametrize('case', [
+    {
+        'description': 'cell_size calculation',
+        'options': dict(src='x', cells='4x4', cell_size='auto', swaps=0, pixel=False, dst='o'),
+        'shape': (10, 10),
+        'expected': ((2, 2), 16, 'o'),
+    },
+    {
+        'description': 'cells calculation',
+        'options': dict(src='x', cells='auto', cell_size='4x4', swaps=0, pixel=False, dst='o'),
+        'shape': (10, 10),
+        'expected': ((4, 4), 4, 'o'),
+    },
+    {
+        'description': 'cell_size calculation with given swaps',
+        'options': dict(src='x', cells='1x6', cell_size='auto', swaps=1, pixel=False, dst='o'),
+        'shape': (12, 12),
+        'expected': ((12, 2), 1, 'o'),
+    },
+    {
+        'description': 'pixel option takes the priority',
+        'options': dict(src='x', cells='auto', cell_size='12x34', swaps=3, pixel=True, dst='o'),
+        'shape': (400, 600),
+        'expected': ((1, 1), 3, 'o'),
+    },
+    {
+        'description': 'incompatible options',
+        'options': dict(src='x', cells='1x6', cell_size='2x2', swaps=1, pixel=False, dst='o'),
+        'shape': (1, 1),
+        'expected': 'Error: is not possible to specify both cells and cell_size',
+    }
+], ids=lambda case: case['description'])
+def test_process_options(case):
+    """
+    Test ``process_options`` function.
+    """
+    options = SimpleNamespace(**case['options'])
+    try:
+        res = rand_puzzle.process_options(options, shape=case['shape'])
+    except AssertionError as err:
+        assert str(err) == case['expected']
+    else:
+        assert res == case['expected']
+
+
 def test_main():
     dst = 'testout.png'
     original = rand_puzzle.load_image_as_grayscale(TEST_IMAGE)
@@ -114,7 +162,17 @@ def test_main():
             [0, 1], [1, 0],
             [0, 0], [1, 1],
         ]
-        rand_puzzle.main(TEST_IMAGE, (2, 2), n_swaps=2, dst=dst)
+        rand_puzzle.main(
+            SimpleNamespace(
+                src=TEST_IMAGE,
+                cells='2x2',
+                swaps=2,
+                dst=dst,
+                # default
+                cell_size='auto',
+                pixel=False
+            )
+        )
 
     ary = rand_puzzle.load_image_as_grayscale(dst)
     expected = [

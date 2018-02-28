@@ -6,13 +6,11 @@ Usage::
 
     python -m src.puzzle.rand_puzzle <image_file_path>
 """
-# Standard Library
-import sys
-
 # 3rd party
 import numpy as np
 from PIL import Image
 
+from .cli import get_options
 from .puzzle import swap
 
 
@@ -43,7 +41,7 @@ def rand_cell(shape):
     return row, column
 
 
-def random_puzzle(ary, cell_size, n_swaps):
+def random_puzzle(ary, cell_size, swaps):
     """
     Create a random puzzle from an array representing a grayscale image.
     """
@@ -54,7 +52,7 @@ def random_puzzle(ary, cell_size, n_swaps):
         int(ary.shape[1] / cell_size)
     )
 
-    for i in range(n_swaps):
+    for i in range(swaps):
         src_cell = rand_cell(subdivided_shape)
         dst_cell = rand_cell(subdivided_shape)
         swap(ary, cell_size, src_cell, dst_cell)
@@ -89,57 +87,60 @@ def save_image(ary, dst):
     Image.fromarray(ary).save(dst)
 
 
-def parse_args(args):
+def process_options(options, shape=None):
     """
-    Simple positional cli argument parser.
+    Process cli options to get 4 parameters:
+        * src -- image source
+        * cell_size -- number of cells size in pixel
+        * swaps -- number of random cells swaps
+        * dst -- destination file
+    """
+    def parse_size_str(size_str):
+        """
+        >>> parse_size_str('2x5')
+        (2, 5)
+        """
+        return tuple(map(int, size_str.split('x')))
 
-    >>> parse_args(['pippo', '4', '6', 'out.png'])
-    ('pippo', (4, 4), 6, 'out.png')
-    >>> parse_args(['pippo', '4', '6'])
-    ('pippo', (4, 4), 6, 'outpuzzle.png')
-    >>> parse_args(['pippo', '4'])
-    ('pippo', (4, 4), 5, 'outpuzzle.png')
-    >>> parse_args(['pippo'])
-    ('pippo', (3, 3), 5, 'outpuzzle.png')
-    >>> try:
-    ...     parse_args([])
-    ... except Exception as err:
-    ...     print(err)
-    Unexpected number of arguments: 0
-    """
-    sub_shape, n_swaps, dst = (3, 3), 5, 'outpuzzle.png'
-    n_args = len(args)
-    if n_args == 4:
-        src, sub_shape, n_swaps, dst = args[0], (int(args[1]), int(args[1])), int(args[2]), args[3]
-    elif n_args == 3:
-        src, sub_shape, n_swaps = args[0], (int(args[1]), int(args[1])), int(args[2])
-    elif n_args == 2:
-        src, sub_shape = args[0], (int(args[1]), int(args[1]))
-    elif n_args == 1:
-        src = args[0]
+    dst = options.dst
+
+    cell_size = options.cell_size
+    if cell_size != 'auto':
+        assert options.cells == 'auto', 'Error: is not possible to specify both cells and cell_size'
+        cell_size = parse_size_str(cell_size)
+        cells = int(shape[0] / cell_size[0]), int(shape[1] / cell_size[1])
     else:
-        raise Exception('Unexpected number of arguments: {}'.format(n_args))
-    n_swaps = int(n_swaps)
-    return src, sub_shape, n_swaps, dst
+        cells = options.cells if options.cells != 'auto' else '3x3'
+        cells = parse_size_str(options.cells)
+        cell_size = get_cell_size(shape, cells)
+
+    if options.pixel:
+        # overwrite everything and use a cell per pixel
+        cells = shape
+        cell_size = 1, 1
+
+    swaps = options.swaps
+    if not swaps:
+        n_cells = np.prod(cells)
+        swaps = n_cells
+    return cell_size, swaps, dst
 
 
-def main(src, sub_shape=(3, 3), n_swaps=5, dst='outpuzzle.png'):
+def main(options):
     """
     Create a random puzzle from a source image.
     """
-    ary = load_image(src)
+    ary = load_image(options.src)
+
+    cell_size, swaps, dst = process_options(options, shape=ary.shape)
 
     # Let's avoid "ValueError: assignment destination is read-only"
     ary.flags['WRITEABLE'] = True
 
-    cell_sizes = get_cell_size(ary.shape, sub_shape)
-    # do not support different sizes (only squares)
-    cell_size = max(cell_sizes)
-
-    random_puzzle(ary, cell_size, n_swaps)
+    random_puzzle(ary, cell_size[0], swaps)
 
     save_image(ary, dst)
 
 
 if __name__ == '__main__':
-    main(*parse_args(sys.argv[1:]))
+    main(get_options())
