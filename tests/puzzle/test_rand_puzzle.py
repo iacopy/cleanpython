@@ -104,28 +104,34 @@ def test_save_image(data):
 
 @pytest.mark.parametrize('case', [
     {
+        'description': 'all auto',
+        'options': dict(src='x', cells='auto', cell_size='auto', swaps=0, pixel=False, dst='o'),
+        'shape': (10, 10),
+        'expected': ((3, 3), 9),
+    },
+    {
         'description': 'cell_size calculation',
         'options': dict(src='x', cells='4x4', cell_size='auto', swaps=0, pixel=False, dst='o'),
         'shape': (10, 10),
-        'expected': ((2, 2), 16, 'o'),
+        'expected': ((2, 2), 16),
     },
     {
         'description': 'cells calculation',
         'options': dict(src='x', cells='auto', cell_size='4x4', swaps=0, pixel=False, dst='o'),
         'shape': (10, 10),
-        'expected': ((4, 4), 4, 'o'),
+        'expected': ((4, 4), 4),
     },
     {
         'description': 'cell_size calculation with given swaps',
         'options': dict(src='x', cells='1x6', cell_size='auto', swaps=1, pixel=False, dst='o'),
         'shape': (12, 12),
-        'expected': ((12, 2), 1, 'o'),
+        'expected': ((12, 2), 1),
     },
     {
         'description': 'pixel option takes the priority',
         'options': dict(src='x', cells='auto', cell_size='12x34', swaps=3, pixel=True, dst='o'),
         'shape': (400, 600),
-        'expected': ((1, 1), 3, 'o'),
+        'expected': ((1, 1), 3),
     },
     {
         'description': 'incompatible options',
