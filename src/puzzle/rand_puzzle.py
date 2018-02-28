@@ -102,33 +102,25 @@ def process_options(options, shape=None):
         """
         return tuple(map(int, size_str.split('x')))
 
-    print('image size =', shape)
-    cell_size = options.cell_size
-    if cell_size != 'auto':
+    if options.cell_size != 'auto':
         assert options.cells == 'auto', 'Error: is not possible to specify both cells and cell_size'
-        cell_size = parse_size_str(cell_size)
+        cell_size = parse_size_str(options.cell_size)
         cells = int(shape[0] / cell_size[0]), int(shape[1] / cell_size[1])
-        print('celculated cells =', cells)
+        print('calculated cells =', cells)
     else:
-        print('cell size = auto (typical case)')
         cells = options.cells if options.cells != 'auto' else '3x3'
         cells = parse_size_str(cells)
-        print('cells', cells)
         cell_size = get_cell_size(shape, cells)
-        print('cell size =', cell_size)
+        print('calculate cell_size =', cell_size)
 
     if options.pixel:
         # overwrite everything and use a cell per pixel
         cells = shape
         cell_size = 1, 1
-        print('pixel option takes the priority above all')
 
     swaps = options.swaps
     if not swaps:
-        n_cells = np.prod(cells)
-        swaps = n_cells
-        print('auto swaps')
-    print('---> cell_size = {}, swaps = {}.'.format(cell_size, swaps))
+        swaps = np.prod(cells)
     return cell_size, swaps
 
 
