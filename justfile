@@ -57,6 +57,10 @@ setup VIRTUALENV:
 @_test-cov:
     pytest --cov --cov-report=xml .
 
+# run tests only (with no coverage and no lint)
+@test:
+    pytest .
+
 # (run test if no coverage.xml found) create html report and open it
 @cov:
     ls coverage.xml || just _test-cov
