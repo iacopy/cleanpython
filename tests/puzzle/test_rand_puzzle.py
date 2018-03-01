@@ -137,7 +137,7 @@ def test_save_image(data):
         'description': 'incompatible options',
         'options': dict(src='x', cells='1x6', cell_size='2x2', swaps=1, pixel=False, dst='o'),
         'shape': (1, 1),
-        'expected': 'Error: is not possible to specify both cells and cell_size',
+        'expected': 'Error: forbidden to specify both cells and cell_size',
     }
 ], ids=lambda case: case['description'])
 def test_process_options(case):

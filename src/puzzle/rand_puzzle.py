@@ -102,25 +102,30 @@ def process_options(options, shape=None):
         """
         return tuple(map(int, size_str.split('x')))
 
-    if options.cell_size != 'auto':
-        assert options.cells == 'auto', 'Error: is not possible to specify both cells and cell_size'
-        cell_size = parse_size_str(options.cell_size)
-        cells = int(shape[0] / cell_size[0]), int(shape[1] / cell_size[1])
-        print('calculated cells =', cells)
-    else:
-        cells = options.cells if options.cells != 'auto' else '3x3'
-        cells = parse_size_str(cells)
-        cell_size = get_cell_size(shape, cells)
-        print('calculate cell_size =', cell_size)
+    def calc_cells_and_cell_size(options):
+        """
+        Get ``cells`` and ``cell_size`` from options.
+
+        Normally ``cell_size`` is calculated from ``cells``, knowing the image size.
+        But if you explicitly set the ``cell_size``, it takes priority.
+        """
+        if options.cell_size != 'auto':
+            assert options.cells == 'auto', 'Error: forbidden to specify both cells and cell_size'
+            cell_size = parse_size_str(options.cell_size)
+            cells = int(shape[0] / cell_size[0]), int(shape[1] / cell_size[1])
+        else:
+            cells = options.cells if options.cells != 'auto' else '3x3'
+            cells = parse_size_str(cells)
+            cell_size = get_cell_size(shape, cells)
+        return cells, cell_size
+
+    cells, cell_size = calc_cells_and_cell_size(options)
 
     if options.pixel:
         # overwrite everything and use a cell per pixel
-        cells = shape
         cell_size = 1, 1
 
-    swaps = options.swaps
-    if not swaps:
-        swaps = np.prod(cells)
+    swaps = options.swaps if options.swaps else np.prod(cells)
     return cell_size, swaps
 
 
