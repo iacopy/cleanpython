@@ -10,6 +10,7 @@ from hypothesis import given
 from hypothesis.extra.numpy import array_shapes
 
 # My stuff
+from puzzle import cli
 from puzzle import rand_puzzle
 
 TEST_IMAGE = './tests/puzzle/wrgb.png'
@@ -146,7 +147,7 @@ def test_process_options(case):
     """
     options = SimpleNamespace(**case['options'])
     try:
-        res = rand_puzzle.process_options(options, shape=case['shape'])
+        res = cli.process_options(options, shape=case['shape'])
     except AssertionError as err:
         assert str(err) == case['expected']
     else:
