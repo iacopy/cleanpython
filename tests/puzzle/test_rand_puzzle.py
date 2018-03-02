@@ -12,44 +12,9 @@ from hypothesis.extra.numpy import array_shapes
 # My stuff
 from puzzle import cli
 from puzzle import rand_puzzle
+from puzzle import util
 
 TEST_IMAGE = './tests/puzzle/wrgb.png'
-
-
-def test_load_image_grayscale():
-    """
-    Test png image loading with conversion to grayscale.
-
-    Load a 4 x 4 RGB(A) image with 2x2 subcells like this
-    [WHITE][RED]
-    [GREEN][BLUE]
-
-    Test exact values.
-    """
-    ary = rand_puzzle.load_image_as_grayscale(TEST_IMAGE)
-    assert ary.shape == (4, 4)
-    assert ary.tolist() == [
-        [255, 255, 76, 76],
-        [255, 255, 76, 76],
-        [149, 149, 29, 29],
-        [149, 149, 29, 29],
-    ]
-
-
-def test_load_image_rgba():
-    """
-    Test png image loading to numpy array.
-    """
-    ary = rand_puzzle.load_image(TEST_IMAGE)
-    assert ary.shape == (4, 4, 4)
-    assert ary.tolist() == [
-        [[255, 255, 255, 255], [255, 255, 255, 255],
-            [255, 0, 0, 255], [255, 0, 0, 255]],
-        [[255, 255, 255, 255], [255, 255, 255, 255],
-            [255, 0, 0, 255], [255, 0, 0, 255]],
-        [[0, 255, 0, 255], [0, 255, 0, 255], [0, 0, 255, 255], [0, 0, 255, 255]],
-        [[0, 255, 0, 255], [0, 255, 0, 255], [0, 0, 255, 255], [0, 0, 255, 255]],
-    ]
 
 
 @given(shape=array_shapes(min_dims=2, max_dims=2))
@@ -88,19 +53,6 @@ def test_random_puzzle():
     ]
     assert ary.tolist() == expected
 
-
-@pytest.mark.parametrize('data', [
-    [[10, 12], [16, 18]],
-    [[1, 2, 3, 4]],
-    [[1, 2, 3], [4, 5, 6], [255, 0, 255]],
-])
-def test_save_image(data):
-    dst = '--testonly--.png'
-    ary = np.array(data, np.uint8)
-    rand_puzzle.save_image(ary, dst)
-    actual = rand_puzzle.load_image_as_grayscale(dst)
-    assert np.array_equal(actual, ary)
-    os.remove(dst)
 
 
 @pytest.mark.parametrize('case', [
@@ -156,7 +108,7 @@ def test_process_options(case):
 
 def test_main():
     dst = 'testout.png'
-    original = rand_puzzle.load_image_as_grayscale(TEST_IMAGE)
+    original = util.load_image_as_grayscale(TEST_IMAGE)
     assert original.tolist() == [
         [255, 255, 76, 76],
         [255, 255, 76, 76],
@@ -181,7 +133,7 @@ def test_main():
             )
         )
 
-    ary = rand_puzzle.load_image_as_grayscale(dst)
+    ary = util.load_image_as_grayscale(dst)
     expected = [
         [29, 29, 149, 149],
         [29, 29, 149, 149],

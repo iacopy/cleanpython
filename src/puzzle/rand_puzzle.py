@@ -8,9 +8,9 @@ Usage::
 """
 # 3rd party
 import numpy as np
-from PIL import Image
 
 from . import cli
+from . import util
 from .puzzle import swap
 
 
@@ -44,36 +44,11 @@ def random_puzzle(ary, cell_size, swaps):
                 i + 1, initial_sum, ary.sum())
 
 
-def load_image_as_grayscale(src):
-    """
-    Open and convert image to 2D grayscale array.
-    """
-    image = Image.open(src).convert('L')
-    ary = np.asarray(image)
-    return ary
-
-
-def load_image(src):
-    """
-    Open and convert image to array.
-    """
-    image = Image.open(src)
-    ary = np.asarray(image)
-    return ary
-
-
-def save_image(ary, dst):
-    """
-    Save an `ary` numpy array image to disk in `dst` file path.
-    """
-    Image.fromarray(ary).save(dst)
-
-
 def main(options):
     """
     Create a random puzzle from a source image.
     """
-    ary = load_image(options.src)
+    ary = util.load_image(options.src)
 
     cell_size, swaps = cli.process_options(options, shape=ary.shape)
 
@@ -85,7 +60,7 @@ def main(options):
             cell_size[0]))
     random_puzzle(ary, cell_size[0], swaps)
 
-    save_image(ary, options.dst)
+    util.save_image(ary, options.dst)
 
 
 if __name__ == '__main__':
