@@ -13,12 +13,12 @@ from hypothesis.extra.numpy import arrays
 
 # My stuff
 from puzzle import puzzle
-from testdata import ARY_4x4
-from testdata import ARY_4x4_S01
-from testdata import ARY_4x4_S01_S13
-from testdata import ARY_4x4x3
-from testdata import ARY_4x4x3_S01
-from testdata import ARY_4x4x3_S01_S13
+from swap_testdata import ARY_4x4
+from swap_testdata import ARY_4x4_S01
+from swap_testdata import ARY_4x4_S01_S13
+from swap_testdata import ARY_4x4x3
+from swap_testdata import ARY_4x4x3_S01
+from swap_testdata import ARY_4x4x3_S01_S13
 
 
 @pytest.mark.parametrize('initial,intermediate,final', [
