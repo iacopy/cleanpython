@@ -86,6 +86,10 @@ Here are ``just`` recipes that are *not* called automatically
 when you call ``just commit`` or ``just checkup``.
 
 
+Make a complete code checkup (lint, test and coverage)::
+
+    just checkup
+
 Run tests without coverage.py overhead::
 
     just test
@@ -102,7 +106,7 @@ Run benchmarks (you have to write down them before :) )::
 
     just benchmarks
 
-Remove build artifacts::
+Remove build artifacts (i.e. all untracked files, pay attention!)::
 
     just clean
 

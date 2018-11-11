@@ -62,7 +62,7 @@ setup VIRTUALENV:
     pytest .
 
 # (run test if no coverage.xml found) create html report and open it
-@cov:
+@coverage:
     ls coverage.xml || just _test-cov
     coverage html  # create an HTML report
     just _open htmlcov/index.html
@@ -135,7 +135,7 @@ setup VIRTUALENV:
     # Open generated doc if possible but without fail otherwise
     just _open {{DOC_DIRNAME}}/build/html/index.html
 
-# remove untracked artifacts (git clean -fdx)
+# WARNING! remove untracked stuff (git clean -fdx)! Useful to clean artifacts
 clean:
     # NB: after this, you will need to recompile cython files
     # (\"python setup.py install\" or \"just compile\")
