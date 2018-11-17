@@ -82,13 +82,13 @@ Remember: prevention is better than cure.
 Recipes
 ~~~~~~~
 
-Here are ``just`` recipes that are *not* called automatically
-when you call ``just commit`` or ``just checkup``.
-
 
 Make a complete code checkup (lint, test and coverage)::
 
     just checkup
+
+The following are ``just`` recipes that are *not* called automatically
+when you call ``just commit`` or ``just checkup``.
 
 Run tests without coverage.py overhead::
 
