@@ -1,12 +1,12 @@
-PROJECT_NAME = 'Your Project Name'
-AUTHOR = 'Your Name'
-DOC_DIRNAME = 'docs'
-DOC_LANGUAGE = 'en'
-DOC_INIT_VERSION = '0.1'
-VIRTUALENVS_DIR = '~/.virtualenvs'
+PROJECT_NAME := 'Your Project Name'
+AUTHOR := 'Your Name'
+DOC_DIRNAME := 'docs'
+DOC_LANGUAGE := 'en'
+DOC_INIT_VERSION := '0.1'
+VIRTUALENVS_DIR := '~/.virtualenvs'
 
 # Quality requirements
-MIN_COVERAGE = '100'
+MIN_COVERAGE := '100'
 
 # just list available recipes
 @welcome:
