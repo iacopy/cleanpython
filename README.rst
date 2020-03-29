@@ -40,14 +40,21 @@ Usage
 Setup
 ~~~~~
 
-::
+Clone::
 
     $ git clone git@github.com:iacopy/cleanpython.git
     $ mv cleanpython yourprojectname
+
+Create virtualenv. I suggest to use fish with virtualfish.
+Otherwise, manually::
+
     $ virtualenv -p python3 ~/.virtualenvs/yourprojectname
     $ source ~/.virtualenvs/yourprojectname/bin/activate
-    $ cd yourprojectname
-    $ pip install -r requirements.txt
+
+Install (assume to be on the repository root)::
+
+    $ just setup  # install requirements
+    $ just install-hooks  # install git hooks
 
 Test setup::
 
