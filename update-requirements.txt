@@ -1,0 +1,18 @@
+# base libraries without versions, useful for updating
+
+# linting
+autopep8
+flake8
+isort
+mypy
+pylint
+
+# testing
+coverage
+hypothesis
+pytest
+pytest-benchmark
+pytest-cov
+
+# documentation
+Sphinx
