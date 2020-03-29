@@ -18,8 +18,19 @@ MIN_COVERAGE := '100'
 @zen:
     python -m this
 
-# bootstrap your project
-setup VIRTUALENV:
+# install stuff: requirements and git hooks (assume virtualenv activated)
+setup:
+    pip install -r requirements.txt
+
+install-hooks:
+    # install pre-commit hook
+    echo "just lint" > .git/hooks/pre-commit&&chmod +x .git/hooks/pre-commit
+
+    # install pre-push hook
+    echo "just test" > .git/hooks/pre-push&&chmod +x .git/hooks/pre-push
+
+# bootstrap your virtualenv
+setup-virtualenv VIRTUALENV:
     @echo Create virtualenv and use it to install requirements
     virtualenv -p python3 {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}
     {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pip install -r requirements.txt
