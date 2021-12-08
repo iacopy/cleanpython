@@ -22,6 +22,7 @@ MIN_COVERAGE := '100'
 setup:
     pip install -r requirements.txt
 
+# install pre-commit hooks (just lint) and pre-push hooks (just test)
 install-hooks:
     # install pre-commit hook
     echo "just lint" > .git/hooks/pre-commit&&chmod +x .git/hooks/pre-commit
