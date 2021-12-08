@@ -66,8 +66,8 @@ def explain_errors(query, git_status):
         for place in ('worktree', 'index'):
             files = git_status.get(place)
             if files:
-                msg = ('ERROR: {} should be clean, '
-                       'but there are files in:'.format(place))
+                msg = (f'ERROR: {place} should be clean, '
+                       'but there are files in:')
                 error_lines.append(msg)
                 for file_path in files:
                     error_lines.append('\t' + file_path)
