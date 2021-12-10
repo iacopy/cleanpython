@@ -5,7 +5,9 @@ autopep8==1.6.0
 Babel==2.9.1
 certifi==2021.10.8
 charset-normalizer==2.0.9
+CleanProject==0.0.0
 coverage==6.2
+Cython==0.29.25
 docutils==0.17.1
 flake8==4.0.1
 hypothesis==6.30.1
