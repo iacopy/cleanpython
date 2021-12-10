@@ -55,6 +55,8 @@ setup-virtualenv VIRTUALENV:
 
 # statically check the codebase (mypy, flake8, pylint, isort)
 @lint:
+    # first, compile cython code (if any)
+    #just compile
     just _mypy
     just _flake8
     just _pylint
@@ -64,6 +66,11 @@ setup-virtualenv VIRTUALENV:
 @fix:
     isort .
     autopep8 --in-place -r .
+
+# compile cython code
+@compile:
+    #rm -rf build
+    python setup.py install
 
 # run tests with coverage
 @_test-cov:
