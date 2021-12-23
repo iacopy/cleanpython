@@ -114,38 +114,38 @@ Just integrated tools
 ---------------------
 
 - [Pytest](https://docs.pytest.org)
-    - useful to write data driven tests
-    - [pytest-benchmark](http://pytest-benchmark.readthedocs.io/en/latest/) makes easy to compare different functions performances
+  - useful to write data driven tests
+  - [pytest-benchmark](http://pytest-benchmark.readthedocs.io/en/latest/) makes easy to compare different functions performances
 - [Hypothesis](https://hypothesis.readthedocs.io)
-    - \"property based testing\"
-    - really useful to find unexpected edge cases to test
+  - \"property based testing\"
+  - really useful to find unexpected edge cases to test
 
 - [Mypy](http://mypy.readthedocs.io)
-    - tests typing annotations
-    - helps to find hidden bugs before they come up
-    - NB: still experimental
+  - tests typing annotations
+  - helps to find hidden bugs before they come up
+  - NB: still experimental
 
 - [Coverage.py](http://coverage.readthedocs.io)
-    - tells you which lines and branches are executed
-    - a 100% coverage should be the *minimal* quality requirement
+  - tells you which lines and branches are executed
+  - a 100% coverage should be the *minimal* quality requirement
 
 - [Pylint](https://www.pylint.org)
-    - the most complete python linter
-    - with several complexity metrics it\'s useful to keep your code clean, simple and readable
-    - helps you to start refactor before your code become too complex
+  - the most complete python linter
+  - with several complexity metrics it\'s useful to keep your code clean, simple and readable
+  - helps you to start refactor before your code become too complex
 
 - [Flake8](http://flake8.readthedocs.io)
-    - helps to write standard, clean and documented code
-    - wraps pep8, pyflakes, McCabe Complexity analysis
-    - supports plugins
+  - helps to write standard, clean and documented code
+  - wraps pep8, pyflakes, McCabe Complexity analysis
+  - supports plugins
 
 - [Sphinx](http://www.sphinx-doc.org/en/stable/)
-    - produce html documentation
-    - can auto-extract documentation from your codebase
+  - produce html documentation
+  - can auto-extract documentation from your codebase
 
 - [just](https://github.com/casey/just)
-    - rules them all together in your workflow
-    - `just commit MESSAGE` allows you to commit only clean and tested code
+  - rules them all together in your workflow
+  - `just commit MESSAGE` allows you to commit only clean and tested code
 
 Zen of Python
 -------------

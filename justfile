@@ -18,10 +18,6 @@ MIN_COVERAGE := '100'
 @zen:
     python -m this
 
-# install stuff: requirements and git hooks (assume virtualenv activated)
-install:
-    pip install -r requirements.txt
-
 # first time installation to get the new versions of libraries and check everything is ok
 @start:
     echo "Installing requirements..."
@@ -35,6 +31,16 @@ install:
     echo "Done."
     echo =========================================================================================
     echo "You can now run 'just' to get a list of available recipes."
+
+# install stuff: requirements and git hooks (assume virtualenv activated)
+install:
+    pip install -r requirements.txt
+
+# update requirements.txt
+update:
+    pip uninstall -y -r requirements.txt
+    pip install -r update-requirements.txt
+    pip freeze > requirements.txt
 
 # install pre-commit hooks (just lint) and pre-push hooks (just test)
 install-hooks:
