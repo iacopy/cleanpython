@@ -40,26 +40,31 @@ Usage
 Setup
 ~~~~~
 
-Clone::
+For development of CleanPython::
 
     $ git clone git@github.com:iacopy/cleanpython.git
     $ mv cleanpython yourprojectname
 
-Create virtualenv. I suggest to use fish with virtualfish.
+For a normal use for a custom project, just download the zip and use it as a skeleton.
+
+Create a virtualenv. I suggest to use the fish console with virtualfish.
 Otherwise, manually::
 
     $ virtualenv -p python3 ~/.virtualenvs/yourprojectname
     $ source ~/.virtualenvs/yourprojectname/bin/activate
 
-Install (assume to be on the repository root)::
+First installation from scratch (assume to be on the repository root)::
 
-    $ just setup  # install requirements
-    $ just install-hooks  # install git hooks
+    $ just start  # install last versions of requirements and check everything is ok
 
-Test setup::
+If something fails, try::
 
-    $ just          # list recipes
-    $ just checkup  # complete code quality assurance check
+    $ just install  # use freezed requirements that are already checked
+
+Optionally, you can also install the git hooks (further automatic checks)::
+
+    $ just install-hooks
+
 
 Minimal workflow
 ~~~~~~~~~~~~~~~~
@@ -92,7 +97,7 @@ Recipes
 
 Make a complete code checkup (lint, test and coverage)::
 
-    just checkup
+    just check
 
 The following are ``just`` recipes that are *not* called automatically
 when you call ``just commit`` or ``just checkup``.
@@ -103,7 +108,7 @@ Run tests without coverage.py overhead::
 
 Create and open your HTML test coverage::
 
-    just coverage
+    just cov
 
 Create your HTML documentation::
 

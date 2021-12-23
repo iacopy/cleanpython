@@ -12,7 +12,7 @@ MIN_COVERAGE := '100'
 @welcome:
     just --list
     echo =========================================================================================
-    echo NB: Make sure your virtualenv is activated before use recipes.
+    echo NB: Make sure your virtualenv is activated before using recipes.
 
 # just show the Zen of Python, by Tim Peters
 @zen:
@@ -141,7 +141,8 @@ setup-virtualenv VIRTUALENV:
     # move conf to main doc directory instead of its "source"
     mv ./{{DOC_DIRNAME}}/source/conf.py ./{{DOC_DIRNAME}}
     @echo NB: please uncomment "sys.path.append" line on conf.py and pass "../src" as argument in order to generate the documentation correctly.
-    # TODO: automatize this step
+    # TODO: automatize the previous step
+    echo Please rename PROJECT_NAME and AUTHOR in \'justfile\' to your project name and author name.
 
 # setup or build and open generated documentation
 @_build-doc:
