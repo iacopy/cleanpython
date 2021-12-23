@@ -22,6 +22,20 @@ MIN_COVERAGE := '100'
 install:
     pip install -r requirements.txt
 
+# first time installation to get the new versions of libraries and check everything is ok
+@start:
+    echo "Installing requirements..."
+    pip install -r update-requirements.txt
+    echo "Complete checkup of code: lint and test coverage"
+    just check
+    echo "Creating documentation of current codebase"
+    just doc
+    echo "updating requirements.txt"
+    pip freeze > requirements.txt
+    echo "Done."
+    echo =========================================================================================
+    echo "You can now run 'just' to get a list of available recipes."
+
 # install pre-commit hooks (just lint) and pre-push hooks (just test)
 install-hooks:
     # install pre-commit hook
