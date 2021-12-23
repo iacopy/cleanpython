@@ -19,7 +19,7 @@ MIN_COVERAGE := '100'
     python -m this
 
 # install stuff: requirements and git hooks (assume virtualenv activated)
-setup:
+install:
     pip install -r requirements.txt
 
 # install pre-commit hooks (just lint) and pre-push hooks (just test)
@@ -74,7 +74,7 @@ setup-virtualenv VIRTUALENV:
     pytest .
 
 # (run test if no coverage.xml found) create html report and open it
-@coverage:
+@cov:
     ls coverage.xml || just _test-cov
     coverage html  # create an HTML report
     just _open htmlcov/index.html
@@ -85,7 +85,7 @@ setup-virtualenv VIRTUALENV:
     echo "test coverage: OK"
 
 # complete checkup: code analysis, tests and coverage
-@checkup:
+@check:
     just lint
     just _test-cov
     just _check-cov
@@ -103,7 +103,7 @@ setup-virtualenv VIRTUALENV:
 
 # require quality and no garbage in the repo worktree
 @_committable: _index-only
-    just checkup
+    just check
     echo Your code seems committable.
 
 # git commit (only if your code is committable)
@@ -112,7 +112,7 @@ setup-virtualenv VIRTUALENV:
     just clean
 
 # check and git push if everything is OK
-@push: _working-tree-clean checkup clean
+@push: _working-tree-clean check clean
     git push
 
 # execute benchmarks tests only, in benchmark mode.
