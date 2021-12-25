@@ -28,13 +28,8 @@ Usage
 
 ### Setup
 
-For development of CleanPython:
-
-    $ git clone git@github.com:iacopy/cleanpython.git
-    $ mv cleanpython yourprojectname
-
-For a normal use for a custom project, just download the zip and use it
-as a skeleton.
+Download the zip and use it as a skeleton for your project.
+Remember to rename the project name inside the 'justfile' and 'docs/conf.py' for the documentation.
 
 Create a virtualenv. I suggest to use the fish console with virtualfish.
 Otherwise, manually:
@@ -44,7 +39,7 @@ Otherwise, manually:
 
 First installation from scratch (assume to be on the repository root):
 
-    $ just start  # install last versions of requirements and check everything is ok
+    $ just start  # install the last versions of requirements and check everything is ok
 
 If something fails, try:
 
@@ -88,7 +83,7 @@ Make a complete code checkup (lint, test and coverage):
     just check
 
 The following are `just` recipes that are *not* called automatically
-when you call `just commit` or `just checkup`.
+when you call `just commit` or `just check`.
 
 Run tests without coverage.py overhead:
 
@@ -116,6 +111,7 @@ Just integrated tools
 - [Pytest](https://docs.pytest.org)
   - useful to write data driven tests
   - [pytest-benchmark](http://pytest-benchmark.readthedocs.io/en/latest/) makes easy to compare different functions performances
+
 - [Hypothesis](https://hypothesis.readthedocs.io)
   - \"property based testing\"
   - really useful to find unexpected edge cases to test
