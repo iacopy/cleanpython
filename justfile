@@ -168,11 +168,11 @@ setup-virtualenv VIRTUALENV:
     # Open generated doc if possible but without fail otherwise
     just _open {{DOC_DIRNAME}}/build/html/index.html
 
-# WARNING! remove untracked stuff (git clean -fdx)! Useful to clean artifacts
+# WARNING! Remove untracked stuff (git clean -idx)! Useful to clean artifacts.
 clean:
     # NB: after this, you will need to recompile cython files
     # (\"python setup.py install\" or \"just compile\")
-    git clean -fdx
+    git clean -idx  # '-i' list untracked files and ask for confirmation
 
 # open a file if possible, else print an alert but do NOT fail
 @_open-nofail FILE:
