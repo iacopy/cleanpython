@@ -22,7 +22,7 @@ sys.path.insert(0, os.path.abspath('../src'))
 # -- Project information -----------------------------------------------------
 
 project = 'Your Project Name'
-copyright = '2018, Your Name'
+copyright = '2022, Your Name'
 author = 'Your Name'
 
 # The short X.Y version
