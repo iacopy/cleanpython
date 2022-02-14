@@ -21,6 +21,7 @@ MIN_COVERAGE := '100'
 # first time installation to get the new versions of libraries and check everything is ok
 @start:
     echo "Installing requirements..."
+    pip install --upgrade pip
     pip install -r update-requirements.txt
     echo "Complete checkup of code: lint and test coverage"
     just check
@@ -34,13 +35,16 @@ MIN_COVERAGE := '100'
 
 # install stuff: requirements and git hooks (assume virtualenv activated)
 install:
+    pip install --upgrade pip
     pip install -r requirements.txt
 
 # update requirements.txt
 update:
+    pip install --upgrade pip
     pip uninstall -y -r requirements.txt
     pip install -r update-requirements.txt
     pip freeze > requirements.txt
+    echo "Remember to commit the updated requirements.txt"
 
 # install pre-commit hooks (just lint) and pre-push hooks (just test)
 install-hooks:
