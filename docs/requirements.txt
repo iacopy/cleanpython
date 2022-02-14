@@ -1,2 +1,0 @@
-myst-parser==0.16.1
-sphinx-sizzle-theme==0.0.9
