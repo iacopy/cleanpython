@@ -1,9 +1,9 @@
-.. Your Project Name documentation master file, created by
-   sphinx-quickstart on Sun Feb 18 05:31:14 2018.
+.. Cleanpython documentation master file, created by
+   sphinx-quickstart on Tue Jan 25 10:00:00 2022.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Your Project Name's documentation!
+Welcome to Cleanpython's documentation!
 =============================================
 
 .. toctree::
