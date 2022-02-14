@@ -16,3 +16,4 @@ pytest-cov
 
 # documentation
 Sphinx
+myst-parser
