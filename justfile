@@ -117,12 +117,15 @@ setup-virtualenv VIRTUALENV:
 
 # ensure that working tree is clean
 @_working-tree-clean:
-    python src/git_status.py clean || just _fail "Your working tree is not clean."
+    git diff-index --quiet HEAD -- || just _fail "working tree is not clean"
 
 # ensure that git repo is clean for commit
-# (contains only stuff in the index, not in the worktree)
+# (contains only staged files in the index, not in the worktree)
 @_index-only:
-    python src/git_status.py index || just _fail "Your working tree is not clean or you don\'t have changes to commit."
+    # Fail if there are untracked files
+    git diff-files --quiet --ignore-submodules -- || just _fail "unstaged changes in index"
+    # Fail if the worktree is totally clean (nothing to commit)
+    git status -s | grep '^' || just _fail "nothing to commit"
     echo git-staged files and clean worktree.
 
 # require quality and no garbage in the repo worktree
@@ -162,7 +165,7 @@ setup-virtualenv VIRTUALENV:
     echo Auto-generate modules documentation...
     # Positional args from seconds (if any) are paths you want to exclude from docs
     # -f overwrite existing .rst, --private include also "_"-starting attributes.
-    sphinx-apidoc -f -o ./{{DOC_DIRNAME}}/ ./src ./src/*git_status.py
+    sphinx-apidoc -f -o ./{{DOC_DIRNAME}}/ ./src
 
     echo Building documentation...
     sphinx-build -b html -c ./{{DOC_DIRNAME}} ./{{DOC_DIRNAME}}/ ./{{DOC_DIRNAME}}/build/html -v
