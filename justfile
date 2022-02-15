@@ -27,7 +27,7 @@ MIN_COVERAGE := '100'
     just check
     echo "Creating documentation of current codebase"
     just doc
-    echo "updating requirements.txt"
+    echo "Updating requirements.txt"
     pip freeze > requirements.txt
     echo "Done."
     echo =========================================================================================
@@ -63,19 +63,19 @@ setup-virtualenv VIRTUALENV:
 
 @_mypy:
     mypy --ignore-missing-imports src
-    echo "mypy  : OK"
+    echo "mypy  : OK ✔️"
 
 @_flake8:
     flake8 .
-    echo "flake8: OK"
+    echo "flake8: OK ✔️"
 
 @_pylint:
     pylint src
-    echo "pylint: OK"
+    echo "pylint: OK ✔️"
 
 @_isort:
-    isort --check-only --recursive --quiet . || just _fail "fix imports by calling \'just fix\'"
-    echo "isort:  OK"
+    isort --check-only --recursive --quiet . || just _fail "Fix imports by calling \'just fix\'."
+    echo "isort : OK ✔️"
 
 # statically check the codebase (mypy, flake8, pylint, isort)
 @lint:
@@ -106,26 +106,26 @@ setup-virtualenv VIRTUALENV:
 # check if coverage satisfies requirements
 @_check-cov:
     coverage report --fail-under {{MIN_COVERAGE}}
-    echo "test coverage: OK"
+    echo "Test coverage {{MIN_COVERAGE}}%  : OK ✅"
 
 # complete checkup: code analysis, tests and coverage
 @check:
     just lint
     just _test-cov
     just _check-cov
-    echo Quality check OK!
+    echo Global quality check: OK ✅
 
 # ensure that working tree is clean
 @_working-tree-clean:
-    git diff-index --quiet HEAD -- || just _fail "working tree is not clean"
+    git diff-index --quiet HEAD -- || just _fail "The working tree is not clean."
 
 # ensure that git repo is clean for commit
 # (contains only staged files in the index, not in the worktree)
 @_index-only:
     # Fail if there are untracked files
-    git diff-files --quiet --ignore-submodules -- || just _fail "unstaged changes in index"
+    git diff-files --quiet --ignore-submodules -- || just _fail "Unstaged changes in index."
     # Fail if the worktree is totally clean (nothing to commit)
-    git status -s | grep '^' || just _fail "nothing to commit"
+    git status -s | grep '^' || just _fail "Nothing to commit."
     echo git-staged files and clean worktree.
 
 # require quality and no garbage in the repo worktree
