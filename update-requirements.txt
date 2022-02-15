@@ -16,4 +16,5 @@ pytest-cov
 
 # documentation
 Sphinx
+sphinx-sizzle-theme
 myst-parser
