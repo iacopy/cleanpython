@@ -18,6 +18,27 @@ MIN_COVERAGE := '100'
 @zen:
     python -m this
 
+# prepare a new project (e.g. just init Foobar "Jonh Doe")
+@init project author:
+    # replace string "Cleanpython" with {{project}} and "iacopy" with {{author}} in files
+    sed -i "" -e s/Cleanpython/"{{project}}"/g -e s/iacopy/"{{author}}"/g docs/conf.py
+    sed -i "" s/Cleanpython/"{{project}}"/g docs/index.rst
+    sed -i "" s/iacopy/"{{author}}"/g LICENSE
+
+    # Overwrite the default README.md
+    echo "# {{project}}\n" > README.md
+
+    # Remove the docs/build directory
+    rm -rf docs/build
+
+    # Reset git repo (remove all commits)
+    # this is useful when Cleanpython is cloned
+    rm -rf .git
+    git init
+    git branch -m main
+    git add .
+    git commit -m "Initial commit for {{project}} (based on CleanPython template)"
+
 # first time installation to get the new versions of libraries and check everything is ok
 @start:
     echo "Installing requirements..."
