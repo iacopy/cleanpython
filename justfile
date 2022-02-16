@@ -151,14 +151,15 @@ setup-virtualenv VIRTUALENV:
     echo Setting up documentation...
     sphinx-quickstart -a "{{AUTHOR}}" -p "{{PROJECT_NAME}}" -v {{DOC_INIT_VERSION}} -l {{DOC_LANGUAGE}} --no-sep --ext-autodoc --ext-coverage --ext-todo --ext-viewcode --no-makefile --no-batchfile ./{{DOC_DIRNAME}}
 
-    @echo NB: please uncomment "sys.path.append" line on conf.py and pass "../src" as argument in order to generate the documentation correctly.
-    # TODO: automatize the previous step
+    # uncomment "sys.path.append" line on conf.py and pass "../src" as argument in order to generate the documentation correctly.
+    # and fix also index.rst (adding "modules" to the toctree, otherwise the build does not work properly)
+    python confix.py
     echo Please rename PROJECT_NAME and AUTHOR in \'justfile\' to your project name and author name.
 
 # setup or build and open generated documentation
 @_build-doc:
     # Check if setup is needed and call _setup-doc in this case.
-    ls ./{{DOC_DIRNAME}}/conf.py || (just _setup-doc && just _exit "Now edit conf.py and recall just doc to build the documentation.")
+    ls ./{{DOC_DIRNAME}}/conf.py || just _setup-doc
 
     echo Auto-generate modules documentation...
     # Positional args from seconds (if any) are paths you want to exclude from docs
