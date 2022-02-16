@@ -149,10 +149,8 @@ setup-virtualenv VIRTUALENV:
 # bootstrap documentation
 @_setup-doc:
     echo Setting up documentation...
-    sphinx-quickstart -a "{{AUTHOR}}" -p "{{PROJECT_NAME}}" -v {{DOC_INIT_VERSION}} -l {{DOC_LANGUAGE}} --sep --ext-autodoc --ext-coverage --ext-todo --ext-viewcode --no-makefile --no-batchfile ./{{DOC_DIRNAME}}
+    sphinx-quickstart -a "{{AUTHOR}}" -p "{{PROJECT_NAME}}" -v {{DOC_INIT_VERSION}} -l {{DOC_LANGUAGE}} --no-sep --ext-autodoc --ext-coverage --ext-todo --ext-viewcode --no-makefile --no-batchfile ./{{DOC_DIRNAME}}
 
-    # move conf to main doc directory instead of its "source"
-    mv ./{{DOC_DIRNAME}}/source/conf.py ./{{DOC_DIRNAME}}
     @echo NB: please uncomment "sys.path.append" line on conf.py and pass "../src" as argument in order to generate the documentation correctly.
     # TODO: automatize the previous step
     echo Please rename PROJECT_NAME and AUTHOR in \'justfile\' to your project name and author name.
