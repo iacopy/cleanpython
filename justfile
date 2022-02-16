@@ -146,7 +146,7 @@ setup-virtualenv VIRTUALENV:
 @benchmarks K_SELECTOR="test":
     pytest --benchmark-enable --benchmark-only -k {{K_SELECTOR}} .
 
-# bootstrap documentation
+# bootstrap documentation (to test the recipe, `rm -rf docs`, then `just doc`)
 @_setup-doc:
     echo Setting up documentation...
     sphinx-quickstart -a "{{AUTHOR}}" -p "{{PROJECT_NAME}}" -r {{DOC_INIT_VERSION}} -l {{DOC_LANGUAGE}} --no-sep --ext-autodoc --ext-coverage --ext-todo --ext-viewcode --no-makefile --no-batchfile ./{{DOC_DIRNAME}}
