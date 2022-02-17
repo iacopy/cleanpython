@@ -4,6 +4,5 @@ src
 .. toctree::
    :maxdepth: 4
 
-   mylib
-   samples
-   script
+   foobar
+   test_foobar
