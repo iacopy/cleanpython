@@ -55,8 +55,8 @@ install:
     pip install --upgrade pip
     pip install -r requirements.txt
 
-# update requirements.txt
-update:
+# get the latest versions of the installed libraries and update requirements.txt
+up:
     pip install --upgrade pip
     pip uninstall -y -r requirements.txt
     pip install -r update-requirements.txt

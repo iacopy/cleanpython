@@ -134,6 +134,10 @@ Automatically fix the coding style:
 
     just fix
 
+Update the libraries and the requirements file:
+
+    just up
+
 Create your HTML documentation:
 
     just doc
