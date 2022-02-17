@@ -32,22 +32,22 @@ Download the zip or clone the repo and use it as a skeleton for your project.
 
 Initialize the git repo:
 
-    \$ just init <project-name> <author>
+    $ just init <project-name> <author>
 
 It will create the first commit with the skeleton files.
 
 First installation from scratch (assume python virtualenv active):
 
-    \$ just start  # install the last versions of requirements and check everything is ok
+    $ just start  # install the last versions of requirements and check everything is ok
 
 If something fails, try:
 
-    \$ just install  # use freezed requirements that are already checked
+    $ just install  # use freezed requirements that are already checked
 
 Optionally, you can also install the git hooks (further automatic
 checks):
 
-    \$ just install-hooks
+    $ just install-hooks
 
 ### Minimal workflow
 
