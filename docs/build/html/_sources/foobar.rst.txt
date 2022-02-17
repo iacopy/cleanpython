@@ -1,7 +1,7 @@
-script module
+foobar module
 =============
 
-.. automodule:: script
+.. automodule:: foobar
    :members:
    :undoc-members:
    :show-inheritance:
