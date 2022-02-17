@@ -5,16 +5,14 @@ CleanPython
 [![Maintainability](https://api.codeclimate.com/v1/badges/142fbb415a2d6f66b804/maintainability)](https://codeclimate.com/github/iacopy/cleanpython/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/142fbb415a2d6f66b804/test_coverage)](https://codeclimate.com/github/iacopy/cleanpython/test_coverage)
 
-A [Python3](https://docs.python.org/3/) project template with several
-useful, standard, integrated batteries included to help you to write
-clean, tested, quality code, following the [Zen of
-Python](#zen-of-python).
+A [Python3](https://docs.python.org/3/) project model with several useful, standard
+and integrated batteries included to help you write clean, tested code by following
+the [Zen of Python](#zen-of-python).
 
-If you are starting a Python3 project from scratch, and you need to
-write robust and clean code, this repository could help you.
+If you start a Python3 project from scratch, and need to write solid, clean code, this repository might help.
 
-What is and why *clean code* matters? Read
-[here](https://www.butterfly.com.au/blog/website-development/clean-high-quality-code-a-guide-on-how-to-become-a-better-programmer).
+What is the *clean* code and why is this important?
+Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-quality-code-a-guide-on-how-to-become-a-better-programmer).
 
 Requirements
 ------------
@@ -42,7 +40,7 @@ First installation from scratch (assume python virtualenv active):
 
 If something fails, try:
 
-    $ just install  # use freezed requirements that are already checked
+    $ just install  # use frozen requirements that are already checked
 
 Optionally, you can also install the git hooks (further automatic
 checks):
@@ -51,40 +49,41 @@ checks):
 
 ### Minimal workflow
 
-1. write test first
+1. write tests first
     ([TDD](https://en.wikipedia.org/wiki/Test-driven_development))
 2. write code until test pass
 3. add your files to git index (e.g. `git add -u`)
 4. `just commit <your commit message>`
 
-When you launch `just commit`, all your codebase is linted and tested
-before actually commit it.
+When you launch `just commit`, your whole code base is statically checked and tested
+before actually committing it. In case of any failure, the commit is aborted.
 
-In case of any fail, the commit is aborted.
+To embed this check directly in git: `just install-hooks`
+(this could be fairly extreme, so these hooks are not installed by default).
 
 For example:
 
 - are there broken tests? Fail.
-- are you trying to escape by avoiding to write tests? Fail.
-- your function is too long? Fail.
-- your class contains too much methods or attributes? Fail.
-- your code is too complex? Fail.
-- your code follows random style? Fail.
+- are you trying to get away without writing tests? Fail.
+- does your function is too long? Fail.
+- does your class contain too many methods or attributes? Fail.
+- does your code is too complex? Fail.
+- does your code follows a random style? Fail.
 
-You don\'t want waste time committing broken code, isn\'t it?
+You don\'t want to waste time committing broken code, isn\'t it?
 
-Remember: prevention is better than cure.
+Prevention is better than cure.
 
 ### Recipes
 
-Make a complete code checkup (lint, test and coverage):
+Make a complete code checkup (lint, test, and coverage):
 
     just check
 
 The following are `just` recipes that are *not* called automatically
 when you call `just commit` or `just check`.
 
-Run tests without coverage.py overhead:
+Run tests without the coverage.py overhead:
 
     just test
 
@@ -126,7 +125,7 @@ Just integrated tools
 
 - [Pylint](https://www.pylint.org)
   - the most complete python linter
-  - with several complexity metrics it\'s useful to keep your code clean, simple and readable
+  - with several complexity metrics, it\'s useful to keep your code clean, simple and readable
   - helps you to start refactor before your code become too complex
 
 - [Flake8](http://flake8.readthedocs.io)
@@ -135,7 +134,7 @@ Just integrated tools
   - supports plugins
 
 - [Sphinx](http://www.sphinx-doc.org/en/stable/)
-  - produce html documentation
+  - generates html documentation
   - can auto-extract documentation from your codebase
 
 - [just](https://github.com/casey/just)
