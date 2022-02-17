@@ -28,27 +28,26 @@ Usage
 
 ### Setup
 
-Download the zip and use it as a skeleton for your project.
-Remember to rename the project name inside the 'justfile' and 'docs/conf.py' for the documentation.
+Download the zip or clone the repo and use it as a skeleton for your project.
 
-Create a virtualenv. I suggest to use the fish console with virtualfish.
-Otherwise, manually:
+Initialize the git repo:
 
-    $ virtualenv -p python3 ~/.virtualenvs/yourprojectname
-    $ source ~/.virtualenvs/yourprojectname/bin/activate
+    \$ just init <project-name> <author>
 
-First installation from scratch (assume to be on the repository root):
+It will create the first commit with the skeleton files.
 
-    $ just start  # install the last versions of requirements and check everything is ok
+First installation from scratch (assume python virtualenv active):
+
+    \$ just start  # install the last versions of requirements and check everything is ok
 
 If something fails, try:
 
-    $ just install  # use freezed requirements that are already checked
+    \$ just install  # use freezed requirements that are already checked
 
 Optionally, you can also install the git hooks (further automatic
 checks):
 
-    $ just install-hooks
+    \$ just install-hooks
 
 ### Minimal workflow
 

@@ -1,8 +1,4 @@
-PROJECT_NAME := 'Cleanpython'
-AUTHOR := 'iacopy'
 DOC_DIRNAME := 'docs'
-DOC_LANGUAGE := 'en'
-DOC_INIT_VERSION := '0.1'
 VIRTUALENVS_DIR := '~/.virtualenvs'
 
 # Quality requirements
@@ -17,6 +13,27 @@ MIN_COVERAGE := '100'
 # just show the Zen of Python, by Tim Peters
 @zen:
     python -m this
+
+# prepare a new project (e.g. just init Foobar "Jonh Doe")
+@init project author:
+    # replace string "Cleanpython" with {{project}} and "iacopy" with {{author}} in files
+    sed -i "" -e s/Cleanpython/"{{project}}"/g -e s/iacopy/"{{author}}"/g docs/conf.py
+    sed -i "" s/Cleanpython/"{{project}}"/g docs/index.rst
+    sed -i "" s/iacopy/"{{author}}"/g LICENSE
+
+    # Overwrite the default README.md
+    echo "# {{project}}\n" > README.md
+
+    # Remove the docs/build directory
+    rm -rf docs/build
+
+    # Reset git repo (remove all commits)
+    # this is useful when Cleanpython is cloned
+    rm -rf .git
+    git init
+    git branch -m main
+    git add .
+    git commit -m "Initial commit for {{project}} (based on CleanPython template)"
 
 # first time installation to get the new versions of libraries and check everything is ok
 @start:
@@ -149,12 +166,11 @@ setup-virtualenv VIRTUALENV:
 # bootstrap documentation (to test the recipe, `rm -rf docs`, then `just doc`)
 @_setup-doc:
     echo Setting up documentation...
-    sphinx-quickstart -a "{{AUTHOR}}" -p "{{PROJECT_NAME}}" -r {{DOC_INIT_VERSION}} -l {{DOC_LANGUAGE}} --no-sep --ext-autodoc --ext-coverage --ext-todo --ext-viewcode --no-makefile --no-batchfile ./{{DOC_DIRNAME}}
+    sphinx-quickstart --no-sep --ext-autodoc --ext-coverage --ext-todo --ext-viewcode --no-makefile --no-batchfile ./{{DOC_DIRNAME}}
 
     # uncomment "sys.path.append" line on conf.py and pass "../src" as argument in order to generate the documentation correctly.
     # and fix also index.rst (adding "modules" to the toctree, otherwise the build does not work properly)
     python confix.py
-    echo Please rename PROJECT_NAME and AUTHOR in \'justfile\' to your project name and author name.
 
 # setup or build and open generated documentation
 @_build-doc:
