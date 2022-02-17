@@ -91,6 +91,14 @@ Create and open your HTML test coverage:
 
     just cov
 
+Static code analysis (included in `just check`):
+
+    just lint
+
+Automatically fix the coding style:
+
+    just fix
+
 Create your HTML documentation:
 
     just doc
@@ -107,7 +115,7 @@ Just integrated tools
 ---------------------
 
 - [Pytest](https://docs.pytest.org)
-  - useful to write data driven tests
+  - useful to write data driven tests, in a straightforward way an with less boilerplate
   - [pytest-benchmark](http://pytest-benchmark.readthedocs.io/en/latest/) makes easy to compare different functions performances
 
 - [Hypothesis](https://hypothesis.readthedocs.io)
@@ -115,9 +123,8 @@ Just integrated tools
   - really useful to find unexpected edge cases to test
 
 - [Mypy](http://mypy.readthedocs.io)
-  - tests typing annotations
+  - static type checker for Python
   - helps to find hidden bugs before they come up
-  - NB: still experimental
 
 - [Coverage.py](http://coverage.readthedocs.io)
   - tells you which lines and branches are executed
@@ -133,13 +140,18 @@ Just integrated tools
   - wraps pep8, pyflakes, McCabe Complexity analysis
   - supports plugins
 
+- [Isort](https://pycqa.github.io/isort/)
+  - Keep imports sorted alphabetically and grouped (standard, third party, local)
+
 - [Sphinx](http://www.sphinx-doc.org/en/stable/)
   - generates html documentation
   - can auto-extract documentation from your codebase
 
 - [just](https://github.com/casey/just)
   - rules them all together in your workflow
-  - `just commit MESSAGE` allows you to commit only clean and tested code
+  - `just check` makes sure everything is ok
+  - `just cov` creates a html coverage report
+  - `just doc` generates your documentation
 
 Zen of Python
 -------------
