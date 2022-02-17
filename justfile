@@ -114,9 +114,9 @@ setup-virtualenv VIRTUALENV:
 @test:
     pytest .
 
-# (run test if no coverage.xml found) create html report and open it
+# run tests with coverage.py, create html report and open it
 @cov:
-    ls coverage.xml || just _test-cov
+    just _test-cov
     coverage html  # create an HTML report
     just _open htmlcov/index.html
 
