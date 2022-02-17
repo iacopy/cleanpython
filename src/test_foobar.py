@@ -2,11 +2,11 @@
 Basic test.
 """
 # My stuff
-import script
+import foobar
 
 
 def test_main():
     """
     Test main function.
     """
-    script.main()
+    foobar.main()
