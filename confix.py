@@ -23,10 +23,9 @@ def fix_docs_conf_py():
         lines = file_obj.readlines()
     with open('docs/conf.py', 'w', encoding='utf-8') as file_obj:
         for line in lines:
-            if line.startswith('# import os'):
-                line = 'import os\n'
-            if line.startswith('# import sys'):
-                line = 'import sys\n'
+            if line.startswith('# import'):
+                # uncomment the line
+                line = line[2:]
             if line.startswith('# sys.path.insert'):
                 line = '\nsys.path.insert(0, os.path.abspath(\'../src\'))\n'
             file_obj.write(line)
