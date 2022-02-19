@@ -1,5 +1,6 @@
 # CleanPython
 
+[![Testing](https://github.com/iacopy/cleanpython/actions/workflows/ci.yml/badge.svg)](https://github.com/iacopy/cleanpython/actions/workflows/ci.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/142fbb415a2d6f66b804/maintainability)](https://codeclimate.com/github/iacopy/cleanpython/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/142fbb415a2d6f66b804/test_coverage)](https://codeclimate.com/github/iacopy/cleanpython/test_coverage)
 
