@@ -48,14 +48,11 @@ def fix_docs_index_rst():
         # Add "modules" to the toctree
         # raise an error if the string "modules" is already in the file
         if line.startswith('   :caption: Contents:'):
-            towrite.append('   :caption: Contents:\n')
-            towrite.append('\n')
-            towrite.append('   modules\n')
+            towrite.extend(('   :caption: Contents:\n\n', '   modules\n'))
+        elif line.strip() == 'modules':
+            raise Exception('"modules" is already in docs/index.rst')
         else:
             towrite.append(line)
-
-        if line.strip() == 'modules':
-            raise Exception('"modules" is already in docs/index.rst')
 
     with open('docs/index.rst', 'w', encoding='utf-8') as file_obj:
         file_obj.write(''.join(towrite))
