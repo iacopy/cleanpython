@@ -19,9 +19,9 @@ def fix_docs_conf_py():
         import sys
         sys.path.insert(0, os.path.abspath('../src'))
     """
-    with open('docs/conf.py', 'r') as file_obj:
+    with open('docs/conf.py', 'r', encoding='utf-8') as file_obj:
         lines = file_obj.readlines()
-    with open('docs/conf.py', 'w') as file_obj:
+    with open('docs/conf.py', 'w', encoding='utf-8') as file_obj:
         for line in lines:
             if line.startswith('# import os'):
                 line = 'import os\n'
@@ -43,7 +43,7 @@ def fix_docs_index_rst():
        modules
     """
     towrite = []
-    with open('docs/index.rst', 'r') as file_obj:
+    with open('docs/index.rst', 'r', encoding='utf-8') as file_obj:
         lines = file_obj.readlines()
     for line in lines:
         # Add "modules" to the toctree
@@ -58,7 +58,7 @@ def fix_docs_index_rst():
         if line.strip() == 'modules':
             raise Exception('"modules" is already in docs/index.rst')
 
-    with open('docs/index.rst', 'w') as file_obj:
+    with open('docs/index.rst', 'w', encoding='utf-8') as file_obj:
         file_obj.write(''.join(towrite))
 
 
