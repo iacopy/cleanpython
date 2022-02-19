@@ -29,6 +29,13 @@ MIN_COVERAGE := '100'
     # Remove all files from 'docs' directory except index.rst
     find docs -maxdepth 1 -not -name 'index.rst' -delete
 
+# add github badges to the readme
+@badges username reponame:
+    # Generate badges
+    echo "[![Testing](https://github.com/{{username}}/{{reponame}}/actions/workflows/ci.yml/badge.svg)](https://github.com/{{username}}/{{reponame}}/actions/workflows/ci.yml)" >> README.md
+    echo "[![Sphinx build](https://github.com/{{username}}/{{reponame}}/actions/workflows/sphinx.yml/badge.svg)](https://github.com/{{username}}/{{reponame}}/actions/workflows/sphinx.yml)" >> README.md
+    echo "[![pages-build-deployment](https://github.com/{{username}}/{{reponame}}/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/{{username}}/{{reponame}}/actions/workflows/pages/pages-build-deployment)" >> README.md
+
 # WARNING! Reset git history, add all files and make initial commit
 @ginit:
     # Reset git repo (remove all commits)

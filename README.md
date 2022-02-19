@@ -92,6 +92,16 @@ checks):
 
     just install-hooks
 
+### Badges
+
+If you want to add badges to your project associated with the actions setup in `.github/workflows`, you can use the following command:
+
+    just badges <repo-name> <username>
+
+This adds three badges to the README.md file. Then commit and push the changes.
+
+To setup GitHub Pages, you have to create a branch named `gh-pages` and push it to the remote repository.
+
 ### Minimal workflow
 
 1. write tests first
