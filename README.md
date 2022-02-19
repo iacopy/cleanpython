@@ -64,15 +64,20 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
 
 ## Usage
 
-### Setup
+### Use this template
 
-Download the zip, or clone the CleanPython repository, and use it as a skeleton for your project.
+First method (recommended): click on `Use this template` button to start a new repository with the CleanPython template.
+Then rename the project strings to your own name using the `just rename` command:
 
-Initialize the git repo:
+    just rename <project-name> <author>
+
+Alternatively, you clone the repository or download the archive and extract it in your project. Then initialize the git repo:
 
     just init <project-name> <author>
 
 It will create the first commit with the skeleton files.
+
+### First step
 
 First installation from scratch (assume python virtualenv active):
 
