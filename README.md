@@ -3,6 +3,8 @@
 [![Testing](https://github.com/iacopy/cleanpython/actions/workflows/ci.yml/badge.svg)](https://github.com/iacopy/cleanpython/actions/workflows/ci.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/142fbb415a2d6f66b804/maintainability)](https://codeclimate.com/github/iacopy/cleanpython/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/142fbb415a2d6f66b804/test_coverage)](https://codeclimate.com/github/iacopy/cleanpython/test_coverage)
+[![Sphinx build](https://github.com/iacopy/cleanpython/actions/workflows/sphinx.yml/badge.svg)](https://github.com/iacopy/cleanpython/actions/workflows/sphinx.yml)
+[![pages-build-deployment](https://github.com/iacopy/cleanpython/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/iacopy/cleanpython/actions/workflows/pages/pages-build-deployment)
 
 A [Python3](https://docs.python.org/3/) project model with several useful, standard
 and integrated tools to help you write clean, tested code by following
