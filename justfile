@@ -83,7 +83,7 @@ install-hooks:
     echo "just test" > .git/hooks/pre-push&&chmod +x .git/hooks/pre-push
 
 # bootstrap your virtualenv
-setup-virtualenv VIRTUALENV:
+setenv VIRTUALENV:
     @echo Create virtualenv and use it to install requirements
     virtualenv -p python3 {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}
     {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pip install -r requirements.txt
