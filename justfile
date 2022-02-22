@@ -26,8 +26,8 @@ MIN_COVERAGE := '100'
 
     # Remove the docs/build directory
     rm -rf docs/build
-    # Remove all files from 'docs' directory except index.rst
-    find docs -maxdepth 1 -not -name 'index.rst' -delete
+    # Remove all files from 'docs' directory except index.rst, conf.py, Makefile, and requirements.txt
+    find docs -not -name 'index.rst' -not -name 'conf.py' -not -name 'Makefile' -not -name 'requirements.txt' -delete
 
 # add github badges to the readme
 @badges username reponame:
