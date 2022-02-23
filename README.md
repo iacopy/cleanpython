@@ -12,13 +12,13 @@ the [Zen of Python](#zen-of-python).
 
 If you start a Python project from scratch, and need to write solid, clean code, this repository might help.
 
-What is the *clean* code and why is this important?
+What is the *clean* code, and why is this important?
 Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-quality-code-a-guide-on-how-to-become-a-better-programmer).
 
 ## Integrated tools
 
 - [Pytest](https://docs.pytest.org)
-  - useful to write data driven tests, in a straightforward way an with less boilerplate
+  - useful to write data-driven tests, in a straightforward way and with less boilerplate
   - [pytest-benchmark](http://pytest-benchmark.readthedocs.io/en/latest/) makes easy to compare different functions performances
 
 - [Hypothesis](https://hypothesis.readthedocs.io)
@@ -36,10 +36,10 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
 - [Pylint](https://www.pylint.org)
   - the most complete python linter
   - with several complexity metrics, it\'s useful to keep your code clean, simple and readable
-  - helps you to start refactor before your code become too complex
+  - helps you to start refactoring before your code become too complex
 
 - [Flake8](http://flake8.readthedocs.io)
-  - helps to write standard, clean and documented code
+  - helps to write standard, clean, and documented code
   - wraps pep8, pyflakes, McCabe Complexity analysis
   - supports plugins
 
