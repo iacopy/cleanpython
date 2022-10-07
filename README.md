@@ -10,7 +10,7 @@ A [Python3](https://docs.python.org/3/) project model with several useful, stand
 and integrated tools to help you write clean, tested code by following
 the [Zen of Python](#zen-of-python).
 
-If you start a Python project from scratch, and need to write solid, clean code, this repository might help.
+If you start a Python project from scratch, and need to write solid, tested, clean code, this repository might help.
 
 What is the *clean* code, and why is this important?
 Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-quality-code-a-guide-on-how-to-become-a-better-programmer).
@@ -88,7 +88,7 @@ If something fails, try:
     just install  # use frozen requirements that are already checked
 
 Optionally, you can also install the git hooks (further automatic
-checks):
+checks, pedantic):
 
     just install-hooks
 
@@ -106,7 +106,7 @@ To setup GitHub Pages, you have to create a branch named `gh-pages` and push it 
 
 1. write tests first
     ([TDD](https://en.wikipedia.org/wiki/Test-driven_development))
-2. write code until test pass
+2. write code until tests pass
 3. add your files to git index (e.g. `git add -u`)
 4. `just commit <your commit message>`
 
@@ -126,6 +126,8 @@ For example:
 - does your code follows a random style? Fail.
 
 You don\'t want to waste time committing broken code, isn\'t it?
+
+The time you don't spend writing tests will be lost later when bugs show up, with customer emails, and in the debugging phase.
 
 Prevention is better than cure.
 
