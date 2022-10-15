@@ -36,7 +36,8 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
 - [Pylint](https://www.pylint.org)
   - the most complete python linter
   - with several complexity metrics, it\'s useful to keep your code clean, simple and readable
-  - helps you to start refactoring before your code become too complex
+  - can catch even duplicate code in different files! 🙌
+  - helps you to start refactoring before your code become too messy
 
 - [Flake8](http://flake8.readthedocs.io)
   - helps to write standard, clean, and documented code
