@@ -5,6 +5,7 @@
 [![pages-build-deployment](https://github.com/iacopy/cleanpython/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/iacopy/cleanpython/actions/workflows/pages/pages-build-deployment)
 [![Maintainability](https://api.codeclimate.com/v1/badges/142fbb415a2d6f66b804/maintainability)](https://codeclimate.com/github/iacopy/cleanpython/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/142fbb415a2d6f66b804/test_coverage)](https://codeclimate.com/github/iacopy/cleanpython/test_coverage)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 A [Python3](https://docs.python.org/3/) project model with several useful, standard
 and integrated tools to help you write clean, tested code by following
