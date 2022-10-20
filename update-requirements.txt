@@ -1,7 +1,6 @@
 # base libraries without versions, useful for updating
 
 # linting
-autopep8
 flake8
 isort
 mypy

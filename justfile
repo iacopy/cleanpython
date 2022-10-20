@@ -115,7 +115,6 @@ setenv VIRTUALENV:
 # auto fix imports and pep8 coding style
 @fix:
     isort .
-    autopep8 --in-place -r .
 
 # run tests with coverage
 @_test-cov:
