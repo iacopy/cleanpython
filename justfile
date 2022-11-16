@@ -106,7 +106,7 @@ setenv VIRTUALENV:
     echo "isort : OK ✔️"
 
 @_black:
-    black --check . || just _fail "Fix code formatting by calling \'just fix\'."
+    black --check -q . || just _fail "Fix code formatting by calling \'just fix\'."
     echo "black : OK ✔️"
 
 # statically check the codebase (mypy, flake8, pylint, isort)
