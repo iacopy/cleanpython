@@ -91,31 +91,31 @@ setenv VIRTUALENV:
 
 @_mypy:
     mypy --ignore-missing-imports src
-    echo "mypy  : OK ✔️"
 
 @_flake8:
     flake8 .
-    echo "flake8: OK ✔️"
 
 @_pylint:
     pylint src
-    echo "pylint: OK ✔️"
 
 @_isort:
     isort --check-only --recursive --quiet . || just _fail "Fix imports by calling \'just fix\'."
-    echo "isort : OK ✔️"
 
 @_black:
     black --check -q . || just _fail "Fix code formatting by calling \'just fix\'."
-    echo "black : OK ✔️"
 
 # statically check the codebase (mypy, flake8, pylint, isort)
 @lint:
     just _mypy
+    echo "mypy  : OK ✅"
     just _flake8
+    echo "flake8: OK ✅✅"
     just _pylint
+    echo "pylint: OK ✅✅✅"
     just _isort
+    echo "isort : OK ✅✅✅ 🍰"
     just _black
+    echo "black : OK ✅✅✅ 🍒"
 
 # auto fix imports and pep8 coding style
 @fix:
@@ -139,14 +139,15 @@ setenv VIRTUALENV:
 # check if coverage satisfies requirements
 @_check-cov:
     coverage report --fail-under {{MIN_COVERAGE}}
-    echo "Test coverage {{MIN_COVERAGE}}%  : OK ✅"
+    echo "\nTest coverage {{MIN_COVERAGE}}%  : OK ✅✅✅✅✅"
 
 # complete checkup: code analysis, tests and coverage
 @check:
     just lint
     just _test-cov
+    echo "Tests: OK ✅✅✅✅"
     just _check-cov
-    echo Global quality check: OK ✅
+    echo Global quality check: OK ⭐️⭐️⭐️⭐️⭐️
 
 # ensure that working tree is clean
 @_working-tree-clean:
