@@ -25,9 +25,9 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pylint pytest
+        pip install black flake8 isort mypy pylint pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Lint with flake8, pylint, isort and black
+    - name: Lint with flake8, mypy, pylint, isort and black
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
@@ -35,6 +35,8 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
         # check also with pylint
         pylint $(git ls-files '*.py') --ignore=conf.py
+        # mypy
+        mypy src
         # isort
         isort --check-only --recursive --quiet .
         # black
