@@ -5,4 +5,3 @@ src
    :maxdepth: 4
 
    foobar
-   test_foobar
