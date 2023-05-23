@@ -41,7 +41,7 @@ pytest-benchmark==4.0.0
 pytest-cov==4.0.0
 pytz==2022.7.1
 PyYAML==6.0
-requests==2.28.2
+requests==2.31.0
 snowballstemmer==2.2.0
 sortedcontainers==2.4.0
 Sphinx==5.3.0
