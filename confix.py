@@ -5,6 +5,10 @@ They need to be edited before launching the build.
 """
 
 
+class ModulesAlreadyInIndex(Exception):
+    """Raise when "modules" is already in docs/index.rst"""
+
+
 def fix_docs_conf_py():
     """
     Lines to be edited in docs/conf.py:
@@ -50,7 +54,7 @@ def fix_docs_index_rst():
         if line.startswith("   :caption: Contents:"):
             towrite.extend(("   :caption: Contents:\n\n", "   modules\n"))
         elif line.strip() == "modules":
-            raise Exception('"modules" is already in docs/index.rst')
+            raise ModulesAlreadyInIndex('"modules" is already in docs/index.rst')
         else:
             towrite.append(line)
 
