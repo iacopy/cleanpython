@@ -22,7 +22,7 @@ sys.path.insert(0, os.path.abspath("../src"))
 # -- Project information -----------------------------------------------------
 
 project = "Cleanpython"
-copyright = "2022, iacopy"
+copyright = "2023, iacopy"
 author = "iacopy"
 
 # The short X.Y version
