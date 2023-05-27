@@ -1,14 +1,14 @@
 """
-Basic script.
+Basic module with a simple function.
 """
 
 
-def main():
+def sum_two_numbers(num_1, num_2):
     """
-    Main function.
+    Simple function that returns the sum of two numbers.
     """
-    print("Hello world!")
+    return num_1 + num_2
 
 
 if __name__ == "__main__":
-    main()
+    print(sum_two_numbers(7, 3))
