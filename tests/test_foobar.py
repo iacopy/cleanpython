@@ -16,9 +16,9 @@ def test_sum_two_numbers():
     assert foobar.sum_two_numbers(1, 2) == 3
 
 
-@pytest.mark.parametrize("a, b, expected", [(1, 2, 3), (2, 3, 5)])
-def test_sum_two_numbers_parametrized(a, b, expected):
+@pytest.mark.parametrize("num_1, num_2, expected", [(1, 2, 3), (2, 3, 5)])
+def test_sum_two_numbers_parametrized(num_1, num_2, expected):
     """
     Test sum_two_numbers function with parameters.
     """
-    assert foobar.sum_two_numbers(a, b) == expected
+    assert foobar.sum_two_numbers(num_1, num_2) == expected
