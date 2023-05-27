@@ -72,7 +72,8 @@ up:
     pip uninstall -y -r requirements.txt
     pip install -r update-requirements.txt
     pip freeze > requirements.txt
-    echo "Remember to commit the updated requirements.txt"
+    pylint --generate-rcfile > pylintrc
+    echo "Remember to commit the updated requirements.txt and/or pylintrc."
 
 # install pre-commit hooks (just lint) and pre-push hooks (just test)
 install-hooks:
