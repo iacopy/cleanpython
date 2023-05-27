@@ -78,6 +78,12 @@ up:
     pylint --generate-rcfile > pylintrc
     echo "Remember to commit the updated requirements.txt and/or pylintrc."
 
+# (beta) for VirtualFish: like 'up' but recreate vf virtualenv to remove also old dependencies
+vfup projectenv:
+    vf deactivate
+    vf new {{projectenv}}
+    just start
+
 # install pre-commit hooks (just lint) and pre-push hooks (just test)
 install-hooks:
     # install pre-commit hook
