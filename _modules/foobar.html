@@ -31,19 +31,19 @@
             
   <h1>Source code for foobar</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Basic script.</span>
+<span class="sd">Basic module with a simple function.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 
-<div class="viewcode-block" id="main"><a class="viewcode-back" href="../foobar.html#foobar.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<div class="viewcode-block" id="sum_two_numbers"><a class="viewcode-back" href="../foobar.html#foobar.sum_two_numbers">[docs]</a><span class="k">def</span> <span class="nf">sum_two_numbers</span><span class="p">(</span><span class="n">num_1</span><span class="p">,</span> <span class="n">num_2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Main function.</span>
+<span class="sd">    Simple function that returns the sum of two numbers.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">num_1</span> <span class="o">+</span> <span class="n">num_2</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sum_two_numbers</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 </pre></div>
 
           </div>
