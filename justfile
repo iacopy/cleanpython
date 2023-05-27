@@ -57,7 +57,10 @@ MIN_COVERAGE := '100'
     just doc
     echo "Updating requirements.txt"
     pip freeze > requirements.txt
+    echo "Updating pylintrc"
+    pylint --generate-rcfile > pylintrc
     echo "Done."
+    echo "Remember to commit the updated requirements.txt and/or pylintrc."
     echo =========================================================================================
     echo "You can now run 'just' to get a list of available recipes."
 
