@@ -106,7 +106,7 @@ setenv VIRTUALENV:
     flake8 .
 
 @_pylint:
-    pylint src
+    pylint $(git ls-files '*.py') --ignore conf.py
 
 @_isort:
     isort --check-only --recursive --quiet . || just _fail "Fix imports by calling \'just fix\'."
