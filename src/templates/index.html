@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Elaborazione Codice</title>
+</head>
+<body>
+    <form method="post">
+        <label for="code">Inserisci il tuo codice:</label>
+        <textarea id="code" name="code"></textarea>
+        <input type="submit" value="Elabora">
+    </form>
+    {% if output %}
+    <h2>Output:</h2>
+    <pre>{{ output }}</pre>
+    {% endif %}
+</body>
+</html>
