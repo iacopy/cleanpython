@@ -11,7 +11,7 @@ A [Python3](https://docs.python.org/3/) project model with several useful, stand
 and integrated tools to help you write clean, tested code by following
 the [Zen of Python](#zen-of-python).
 
-If you start a Python project from scratch, and need to write solid, tested, clean code, this repository might help.
+If you start a Python project from scratch and need to write solid, tested, clean code, this repository might help.
 
 What is the *clean* code, and why is this important?
 Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-quality-code-a-guide-on-how-to-become-a-better-programmer).
@@ -25,6 +25,7 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
 - [Hypothesis](https://hypothesis.readthedocs.io)
   - \"property based testing\"
   - really useful to find unexpected edge cases to test
+  - NB: no test examples, so far, in this repo
 
 - [Mypy](http://mypy.readthedocs.io)
   - static type checker for Python
@@ -35,10 +36,10 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
   - a 100% coverage should be the *minimal* quality requirement
 
 - [Pylint](https://www.pylint.org)
-  - the most complete python linter
+  - the most complete Python linter
   - with several complexity metrics, it\'s useful to keep your code clean, simple and readable
   - can catch even duplicate code in different files! 🙌
-  - helps you to start refactoring before your code become too messy
+  - helps you to start refactoring before your code becomes too messy
 
 - [Flake8](http://flake8.readthedocs.io)
   - helps to write standard, clean, and documented code
@@ -54,8 +55,8 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
 
 - [just](https://github.com/casey/just)
   - rules them all together in your workflow
-  - `just check` makes sure everything is ok
-  - `just cov` creates a html coverage report
+  - `just check` to make sure everything is OK
+  - `just cov` creates an HTML coverage report
   - `just doc` generates your documentation
 
 ## Requirements
@@ -125,7 +126,7 @@ For example:
 - does your function is too long? Fail.
 - does your class contain too many methods or attributes? Fail.
 - does your code is too complex? Fail.
-- does your code follows a random style? Fail.
+- does your code follow a random style? Fail.
 
 You don\'t want to waste time committing broken code, isn\'t it?
 
