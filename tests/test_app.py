@@ -34,14 +34,14 @@ def test_index_get(client):  # pylint: disable=redefined-outer-name
     """
     response = client.get("/")
     assert response.status_code == 200
-    assert b"<title>Elaborazione Codice</title>" in response.data
+    assert b"<title>Elaborazione Testo</title>" in response.data
 
 
 def test_index_post(client):  # pylint: disable=redefined-outer-name
     """
     Test the index page, POST method: check the title and the output.
     """
-    response = client.post("/", data={"code": "print('hello world')"})
+    response = client.post("/", data={"text": "Hello, world!"})
     assert response.status_code == 200
-    assert b"<title>Elaborazione Codice</title>" in response.data
-    assert b"<pre>PRINT(&#39;HELLO WORLD&#39;)</pre>" in response.data
+    assert b"<title>Elaborazione Testo</title>" in response.data
+    assert b"<pre>HELLO, WORLD!</pre>" in response.data

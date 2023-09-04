@@ -21,11 +21,11 @@ def hello_world():
 @app.route("/", methods=["GET", "POST"])
 def index():
     """
-    The index page, with a form to submit code for processing.
+    The index page, with a form to submit text for processing.
     """
     if request.method == "POST":
-        user_code = request.form["code"]
-        output = user_code.upper()
+        user_text = request.form["text"]
+        output = user_text.upper()
         return render_template("index.html", output=output)
     return render_template("index.html")
 
