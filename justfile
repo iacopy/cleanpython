@@ -56,7 +56,7 @@ MIN_COVERAGE := '100'
     echo "Creating documentation of current codebase"
     just doc
     echo "Updating requirements.txt"
-    pip freeze > requirements.txt
+    pip freeze > requirements-dev.txt
     echo "Updating pylintrc"
     pylint --generate-rcfile > pylintrc
     echo "Done."
@@ -67,14 +67,14 @@ MIN_COVERAGE := '100'
 # install stuff: requirements and git hooks (assume virtualenv activated)
 install:
     pip install --upgrade pip
-    pip install -r requirements.txt
+    pip install -r requirements-dev.txt
 
 # get the latest versions of the installed libraries and update requirements.txt
 up:
     pip install --upgrade pip
-    pip uninstall -y -r requirements.txt
+    pip uninstall -y -r requirements-dev.txt
     pip install -r update-requirements.txt
-    pip freeze > requirements.txt
+    pip freeze > requirements-dev.txt
     pylint --generate-rcfile > pylintrc
     echo "Remember to commit the updated requirements.txt and/or pylintrc."
 
@@ -96,7 +96,7 @@ install-hooks:
 setenv VIRTUALENV:
     @echo Create virtualenv and use it to install requirements
     virtualenv -p python3 {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}
-    {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pip install -r requirements.txt
+    {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}/bin/python -m pip install -r requirements-dev.txt
     @echo Now please activate the virtualenv, then call \"just doc\".
 
 @_mypy:
