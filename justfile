@@ -14,6 +14,43 @@ MIN_COVERAGE := '100'
 @zen:
     python -m this
 
+# just show the help
+@help:
+    echo "# INSTALL\n"
+    echo "## Install using poetry\n"
+    echo "    poetry install"
+    echo "If you only want to install the project’s runtime dependencies:\n"
+    echo "    poetry install --only main"
+    echo "Ensure that the locked dependencies in the poetry.lock file are the only ones present in the environment, removing anything that’s not necessary."
+    echo "    poetry install --sync"
+    echo
+    echo "Add dependencies to the current project:\n"
+    echo "    poetry add <dependency>"
+    echo
+    echo "Add a development dependency:\n"
+    echo "    poetry add <dependency> --group dev"
+    echo
+    echo "## Testing and code quality"
+    echo
+    echo "### Type check and quality check of your code\n"
+    echo "    just lint"
+    echo
+    echo "### Run tests\n"
+    echo "    just test"
+    echo
+    echo "### Run tests with coverage\n"
+    echo "    just cov"
+    echo
+    echo "### Perform a complete checkup\n"
+    echo "    just check"
+    echo
+    echo "### Run benchmarks\n"
+    echo "    just benchmarks"
+    echo
+    echo "### Build documentation\n"
+    echo "    just doc"
+    echo
+
 # rename project and author
 @rename project author:
     # replace string "Cleanpython" with {{project}} and "iacopy" with {{author}} in files
@@ -48,35 +85,28 @@ MIN_COVERAGE := '100'
 
 # first time installation to get the new versions of libraries and check everything is ok
 @startup:
-    echo "Installing requirements to get the new versions of libraries and check everything is ok"
-    pip install --upgrade pip
-    pip install -r update-requirements.txt
+    poetry self update
+    echo "Get the new versions of libraries and check everything is ok"
+    just up
+    poetry install
     echo "Complete checkup of code: lint and test coverage"
     just check
     echo "Creating documentation of current codebase"
     just doc
-    echo "Updating requirements.txt"
-    pip freeze > requirements-dev.txt
-    echo "Updating pylintrc"
-    pylint --generate-rcfile > pylintrc
     echo "Done."
-    echo "Remember to commit the updated requirements.txt and/or pylintrc."
+    echo "Remember to commit changes."
     echo =========================================================================================
-    echo "You can now run 'just' to get a list of available recipes."
+    echo "You can now run 'just' to get a list of available recipes, or 'just help' to get more info."
 
-# install stuff: requirements and git hooks (assume virtualenv activated)
+# install stuff: dependencies (using poetry) and git hooks
 install:
-    pip install --upgrade pip
-    pip install -r requirements-dev.txt
+    poetry install
 
-# get the latest versions of the installed libraries and update requirements.txt
+# get the latest versions of the installed libraries
 up:
-    pip install --upgrade pip
-    pip uninstall -y -r requirements-dev.txt
-    pip install -r update-requirements.txt
-    pip freeze > requirements-dev.txt
-    pylint --generate-rcfile > pylintrc
-    echo "Remember to commit the updated requirements.txt and/or pylintrc."
+    poetry update
+    poetry run pylint --generate-rcfile > pylintrc
+    @echo "Now you can call `just install`"
 
 # (beta) for VirtualFish: like 'up' but recreate vf virtualenv to remove also old dependencies
 vfup projectenv:
@@ -92,7 +122,7 @@ install-hooks:
     # install pre-push hook
     echo "just test" > .git/hooks/pre-push&&chmod +x .git/hooks/pre-push
 
-# bootstrap your virtualenv
+# bootstrap your virtualenv (deprecated)
 setenv VIRTUALENV:
     @echo Create virtualenv and use it to install requirements
     virtualenv -p python3 {{VIRTUALENVS_DIR}}/{{VIRTUALENV}}
@@ -100,19 +130,19 @@ setenv VIRTUALENV:
     @echo Now please activate the virtualenv, then call \"just doc\".
 
 @_mypy:
-    mypy --ignore-missing-imports src
+    poetry run mypy --ignore-missing-imports src
 
 @_flake8:
-    flake8 .
+    poetry run flake8 .
 
 @_pylint:
-    pylint $(git ls-files '*.py') --ignore conf.py
+    poetry run pylint $(git ls-files '*.py') --ignore conf.py
 
 @_isort:
-    isort --check-only --recursive --quiet . || just _fail "Fix imports by calling \'just fix\'."
+    poetry run isort --check-only --recursive --quiet . || just _fail "Fix imports by calling \'just fix\'."
 
 @_black:
-    black --check -q . || just _fail "Fix code formatting by calling \'just fix\'."
+    poetry run black --check -q . || just _fail "Fix code formatting by calling \'just fix\'."
 
 # statically check the codebase (mypy, flake8, pylint, isort)
 @lint:
@@ -129,29 +159,29 @@ setenv VIRTUALENV:
 
 # auto fix imports and pep8 coding style
 @fix:
-    isort .
-    black .
+    poetry run isort .
+    poetry run black .
     # Re-check code quality
     just lint
 
 # run tests with coverage
 @_test-cov:
-    pytest --cov --cov-report=xml .
+    poetry run pytest --cov --cov-report=xml .
 
 # run tests only (with no coverage and no lint)
 @test:
-    pytest
+    poetry run pytest
     echo "Tests: OK ✅✅✅✅"
 
 # run tests with coverage.py, create html report and open it
 @cov:
     just _test-cov
-    coverage html  # create an HTML report
-    just _open htmlcov/index.html
+    poetry run coverage html  # create an HTML report
+    just _open-nofail htmlcov/index.html
 
 # check if coverage satisfies requirements
 @_check-cov:
-    coverage report --fail-under {{MIN_COVERAGE}}
+    poetry run coverage report --fail-under {{MIN_COVERAGE}}
     echo "\nTest coverage {{MIN_COVERAGE}}%  : OK ✅✅✅✅✅"
 
 # complete checkup: code analysis, tests and coverage
@@ -191,12 +221,12 @@ setenv VIRTUALENV:
 
 # execute benchmarks tests only, in benchmark mode.
 @benchmarks K_SELECTOR="test":
-    pytest --benchmark-enable --benchmark-only -k {{K_SELECTOR}} .
+    poetry run pytest --benchmark-enable --benchmark-only -k {{K_SELECTOR}} .
 
 # bootstrap documentation (to test the recipe, `rm -rf docs`, then `just doc`)
 @_setup-doc:
     echo Setting up documentation...
-    sphinx-quickstart --no-sep --ext-autodoc --ext-coverage --ext-todo --ext-viewcode --no-makefile --no-batchfile ./{{DOC_DIRNAME}}
+    poetry run sphinx-quickstart --no-sep --ext-autodoc --ext-coverage --ext-todo --ext-viewcode --no-makefile --no-batchfile ./{{DOC_DIRNAME}}
 
     # uncomment "sys.path.append" line on conf.py and pass "../src" as argument in order to generate the documentation correctly.
     # and fix also index.rst (adding "modules" to the toctree, otherwise the build does not work properly)
@@ -210,10 +240,10 @@ setenv VIRTUALENV:
     echo Auto-generate modules documentation...
     # Positional args from seconds (if any) are paths you want to exclude from docs
     # -f overwrite existing .rst, --private include also "_"-starting attributes.
-    sphinx-apidoc -f -o ./{{DOC_DIRNAME}}/ ./src
+    poetry run sphinx-apidoc -f -o ./{{DOC_DIRNAME}}/ ./src
 
     echo Building documentation...
-    sphinx-build -b html -c ./{{DOC_DIRNAME}} ./{{DOC_DIRNAME}}/ ./{{DOC_DIRNAME}}/build/html -v
+    poetry run sphinx-build -b html -c ./{{DOC_DIRNAME}} ./{{DOC_DIRNAME}}/ ./{{DOC_DIRNAME}}/build/html -v
 
 # build and open HTML documentation
 @doc: _build-doc

@@ -64,6 +64,7 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
 - [Git](https://git-scm.com)
 - [Python3](https://docs.python.org/3/)
 - [just](https://github.com/casey/just)
+- [poetry](https://python-poetry.org/)
 
 ## Usage
 
@@ -156,7 +157,7 @@ Automatically fix the coding style:
 
     just fix
 
-Update the libraries and the requirements file:
+Update dependencies and config files:
 
     just up
 
