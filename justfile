@@ -177,7 +177,7 @@ setenv VIRTUALENV:
 @cov:
     just _test-cov
     poetry run coverage html  # create an HTML report
-    just _open htmlcov/index.html
+    just _open-nofail htmlcov/index.html
 
 # check if coverage satisfies requirements
 @_check-cov:
