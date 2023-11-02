@@ -140,7 +140,8 @@ setenv VIRTUALENV:
 
 # run tests only (with no coverage and no lint)
 @test:
-    pytest .
+    pytest
+    echo "Tests: OK ✅✅✅✅"
 
 # run tests with coverage.py, create html report and open it
 @cov:
