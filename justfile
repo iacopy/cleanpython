@@ -1,4 +1,4 @@
-DOC_DIRNAME := 'docs'
+DOC_DIRNAME := 'site'
 VIRTUALENVS_DIR := '~/.virtualenvs'
 
 # Quality requirements
@@ -223,32 +223,11 @@ setenv VIRTUALENV:
 @benchmarks K_SELECTOR="test":
     poetry run pytest --benchmark-enable --benchmark-only -k {{K_SELECTOR}} .
 
-# bootstrap documentation (to test the recipe, `rm -rf docs`, then `just doc`)
-@_setup-doc:
-    echo Setting up documentation...
-    poetry run sphinx-quickstart --no-sep --ext-autodoc --ext-coverage --ext-todo --ext-viewcode --no-makefile --no-batchfile ./{{DOC_DIRNAME}}
-
-    # uncomment "sys.path.append" line on conf.py and pass "../src" as argument in order to generate the documentation correctly.
-    # and fix also index.rst (adding "modules" to the toctree, otherwise the build does not work properly)
-    python confix.py
-
-# setup or build and open generated documentation
-@_build-doc:
-    # Check if setup is needed and call _setup-doc in this case.
-    ls ./{{DOC_DIRNAME}}/conf.py || just _setup-doc
-
-    echo Auto-generate modules documentation...
-    # Positional args from seconds (if any) are paths you want to exclude from docs
-    # -f overwrite existing .rst, --private include also "_"-starting attributes.
-    poetry run sphinx-apidoc -f -o ./{{DOC_DIRNAME}}/ ./src
-
-    echo Building documentation...
-    poetry run sphinx-build -b html -c ./{{DOC_DIRNAME}} ./{{DOC_DIRNAME}}/ ./{{DOC_DIRNAME}}/build/html -v
-
 # build and open HTML documentation
-@doc: _build-doc
+@doc:
+    poetry run mkdocs build
     # Open generated doc if possible but without fail otherwise
-    just _open {{DOC_DIRNAME}}/build/html/index.html
+    just _open {{DOC_DIRNAME}}/index.html
 
 # WARNING! Remove untracked stuff (git clean -idx)! Useful to clean artifacts.
 clean:
