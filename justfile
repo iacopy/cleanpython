@@ -47,8 +47,8 @@ MIN_COVERAGE := '100'
     git commit -m "Initial commit (based on CleanPython template)"
 
 # first time installation to get the new versions of libraries and check everything is ok
-@start:
-    echo "Installing requirements..."
+@startup:
+    echo "Installing requirements to get the new versions of libraries and check everything is ok"
     pip install --upgrade pip
     pip install -r update-requirements.txt
     echo "Complete checkup of code: lint and test coverage"
@@ -82,7 +82,7 @@ up:
 vfup projectenv:
     vf deactivate
     vf new {{projectenv}}
-    just start
+    just startup
 
 # install pre-commit hooks (just lint) and pre-push hooks (just test)
 install-hooks:

@@ -84,7 +84,7 @@ It will create the first commit with the skeleton files.
 
 First installation from scratch (assume python virtualenv active):
 
-    just start  # install the latest versions of requirements and check everything is ok
+    just startup  # install the latest versions of requirements and check everything is ok
 
 If something fails, try:
 
