@@ -19,45 +19,45 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
 ## Integrated tools
 
 - [Pytest](https://docs.pytest.org)
-  - useful to write data-driven tests, in a straightforward way and with less boilerplate
-  - [pytest-benchmark](http://pytest-benchmark.readthedocs.io/en/latest/) makes easy to compare different functions performances
+    - useful to write data-driven tests, in a straightforward way and with less boilerplate
+    - [pytest-benchmark](http://pytest-benchmark.readthedocs.io/en/latest/) makes easy to compare different functions performances
 
 - [Hypothesis](https://hypothesis.readthedocs.io)
-  - \"property based testing\"
-  - really useful to find unexpected edge cases to test
-  - NB: no test examples, so far, in this repo
+    - \"property based testing\"
+    - really useful to find unexpected edge cases to test
+    - NB: no test examples, so far, in this repo
 
 - [Mypy](http://mypy.readthedocs.io)
-  - static type checker for Python
-  - helps to find hidden bugs before they come up
+    - static type checker for Python
+    - helps to find hidden bugs before they come up
 
 - [Coverage.py](http://coverage.readthedocs.io)
-  - tells you which lines and branches are executed
-  - a 100% coverage should be the *minimal* quality requirement
+    - tells you which lines and branches are executed
+    - a 100% coverage should be the *minimal* quality requirement
 
 - [Pylint](https://www.pylint.org)
-  - the most complete Python linter
-  - with several complexity metrics, it\'s useful to keep your code clean, simple and readable
-  - can catch even duplicate code in different files! 🙌
-  - helps you to start refactoring before your code becomes too messy
+    - the most complete Python linter
+    - with several complexity metrics, it\'s useful to keep your code clean, simple and readable
+    - can catch even duplicate code in different files! 🙌
+    - helps you to start refactoring before your code becomes too messy
 
 - [Flake8](http://flake8.readthedocs.io)
-  - helps to write standard, clean, and documented code
-  - wraps pep8, pyflakes, McCabe Complexity analysis
-  - supports plugins
+    - helps to write standard, clean, and documented code
+    - wraps pep8, pyflakes, McCabe Complexity analysis
+    - supports plugins
 
 - [Isort](https://pycqa.github.io/isort/)
-  - Keep imports sorted alphabetically and grouped (standard, third party, local)
+    - Keep imports sorted alphabetically and grouped (standard, third party, local)
 
 - [Sphinx](http://www.sphinx-doc.org/en/stable/)
-  - generates html documentation
-  - can auto-extract documentation from your codebase
+    - generates html documentation
+    - can auto-extract documentation from your codebase
 
 - [just](https://github.com/casey/just)
-  - rules them all together in your workflow
-  - `just check` to make sure everything is OK
-  - `just cov` creates an HTML coverage report
-  - `just doc` generates your documentation
+    - rules them all together in your workflow
+    - `just check` to make sure everything is OK
+    - `just cov` creates an HTML coverage report
+    - `just doc` generates your documentation
 
 ## Requirements
 
