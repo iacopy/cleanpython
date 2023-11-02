@@ -53,6 +53,13 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
     - generates html documentation
     - can auto-extract documentation from your codebase
 
+- [Poetry](https://python-poetry.org/)
+    - Poetry comes with all the tools you might need to manage your projects in a deterministic way
+    - Dependency resolver, isolation, cli
+    - Check the state of your dependencies
+    - Easily build and package your projects with a single command
+    - Make your work known by publishing it to PyPI
+
 - [just](https://github.com/casey/just)
     - rules them all together in your workflow
     - `just check` to make sure everything is OK
@@ -63,8 +70,8 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
 
 - [Git](https://git-scm.com)
 - [Python3](https://docs.python.org/3/)
+- [Poetry](https://python-poetry.org/)
 - [just](https://github.com/casey/just)
-- [poetry](https://python-poetry.org/)
 
 ## Usage
 
