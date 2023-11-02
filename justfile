@@ -131,6 +131,8 @@ setenv VIRTUALENV:
 @fix:
     isort .
     black .
+    # Re-check code quality
+    just lint
 
 # run tests with coverage
 @_test-cov:
