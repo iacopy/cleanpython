@@ -24,10 +24,10 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install just
       uses: extractions/setup-just@v1
+    - name: Install poetry
+      uses: abatilo/actions-poetry@v2
     - name: Install dependencies
       run: |
-        pipx install poetry
-        pipx upgrade poetry
         just install
     - name: Lint with flake8, mypy, pylint, isort and black
       run: |
