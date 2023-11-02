@@ -15,35 +15,26 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11"]
+        python-version: ["3.11"]
     steps:
     - uses: actions/checkout@v3
     - name: Set up ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Install just
+      uses: extractions/setup-just@v1
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install black flake8 isort mypy pylint pytest
-        if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+        pipx install poetry
+        pipx upgrade poetry
+        just install
     - name: Lint with flake8, mypy, pylint, isort and black
       run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-        # check also with pylint
-        pylint $(git ls-files '*.py') --ignore=conf.py
-        # mypy
-        mypy src
-        # isort
-        isort --check-only --recursive --quiet .
-        # black
-        black --check .
+        just lint
     - name: Test with pytest
       run: |
-        pytest --cov --cov-report=xml
+        just cov
     - name: Test & publish code coverage
       # https://github.com/marketplace/actions/code-climate-coverage-action
       uses: paambaati/codeclimate-action@v3.0.0
