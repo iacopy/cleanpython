@@ -54,23 +54,19 @@ MIN_COVERAGE := '100'
 # rename project and author
 @rename project author:
     # replace string "Cleanpython" with {{project}} and "iacopy" with {{author}} in files
-    sed -i "" -e s/Cleanpython/"{{project}}"/g -e s/iacopy/"{{author}}"/g docs/conf.py
-    sed -i "" s/Cleanpython/"{{project}}"/g docs/index.rst
+    sed -i "" -e s/Cleanpython/"{{project}}"/g -e s/iacopy/"{{author}}"/g pyproject.toml
+    sed -i "" s/"Clean code with batteries included."/"Project description placeholder"/g pyproject.toml
     sed -i "" s/iacopy/"{{author}}"/g LICENSE
 
+    # Overwrite the default docs/index.md
+    echo "# {{project}}\n" > docs/index.md
     # Overwrite the default README.md
     echo "# {{project}}\n" > README.md
-
-    # Remove the docs/build directory
-    rm -rf docs/build
-    # Remove all files from 'docs' directory except index.rst, conf.py, Makefile, and requirements.txt
-    find docs -not -name 'index.rst' -not -name 'conf.py' -not -name 'Makefile' -not -name 'requirements.txt' -delete
 
 # add github badges to the readme
 @badges username reponame:
     # Generate badges
     echo "[![Testing](https://github.com/{{username}}/{{reponame}}/actions/workflows/ci.yml/badge.svg)](https://github.com/{{username}}/{{reponame}}/actions/workflows/ci.yml)" >> README.md
-    echo "[![Sphinx build](https://github.com/{{username}}/{{reponame}}/actions/workflows/sphinx.yml/badge.svg)](https://github.com/{{username}}/{{reponame}}/actions/workflows/sphinx.yml)" >> README.md
     echo "[![pages-build-deployment](https://github.com/{{username}}/{{reponame}}/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/{{username}}/{{reponame}}/actions/workflows/pages/pages-build-deployment)" >> README.md
 
 # WARNING! Reset git history, add all files and make initial commit
