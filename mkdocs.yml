@@ -1,3 +1,8 @@
 site_name: My Docs
 nav:
   - Home: index.md
+  - App: app.md
+
+plugins:
+  - mkdocstrings:
+      default_handler: python
