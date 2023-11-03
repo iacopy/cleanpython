@@ -227,6 +227,10 @@ setenv VIRTUALENV:
 @doc:
     poetry run mkdocs serve
 
+# deploy HTML documentation to github pages
+@doc-deploy:
+    poetry run mkdocs gh-deploy
+
 # WARNING! Remove untracked stuff (git clean -idx)! Useful to clean artifacts.
 clean:
     # NB: after this, you will need to recompile cython files
