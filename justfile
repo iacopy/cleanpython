@@ -223,11 +223,9 @@ setenv VIRTUALENV:
 @benchmarks K_SELECTOR="test":
     poetry run pytest --benchmark-enable --benchmark-only -k {{K_SELECTOR}} .
 
-# build and open HTML documentation
+# serve HTML documentation
 @doc:
-    poetry run mkdocs build
-    # Open generated doc if possible but without fail otherwise
-    just _open {{DOC_DIRNAME}}/index.html
+    poetry run mkdocs serve
 
 # WARNING! Remove untracked stuff (git clean -idx)! Useful to clean artifacts.
 clean:
