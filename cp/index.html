@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>CleanPython - My Docs</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">My Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">CleanPython</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#cleanpython" class="nav-link">CleanPython</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#integrated-tools" class="nav-link">Integrated tools</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#requirements" class="nav-link">Requirements</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#usage" class="nav-link">Usage</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#zen-of-python" class="nav-link">Zen of Python</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="cleanpython">CleanPython</h1>
+<p><a href="https://github.com/iacopy/cleanpython/actions/workflows/ci.yml"><img alt="Testing" src="https://github.com/iacopy/cleanpython/actions/workflows/ci.yml/badge.svg" /></a>
+<a href="https://github.com/iacopy/cleanpython/actions/workflows/sphinx.yml"><img alt="Sphinx build" src="https://github.com/iacopy/cleanpython/actions/workflows/sphinx.yml/badge.svg" /></a>
+<a href="https://github.com/iacopy/cleanpython/actions/workflows/pages/pages-build-deployment"><img alt="pages-build-deployment" src="https://github.com/iacopy/cleanpython/actions/workflows/pages/pages-build-deployment/badge.svg" /></a>
+<a href="https://codeclimate.com/github/iacopy/cleanpython/maintainability"><img alt="Maintainability" src="https://api.codeclimate.com/v1/badges/142fbb415a2d6f66b804/maintainability" /></a>
+<a href="https://codeclimate.com/github/iacopy/cleanpython/test_coverage"><img alt="Test Coverage" src="https://api.codeclimate.com/v1/badges/142fbb415a2d6f66b804/test_coverage" /></a>
+<a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" /></a></p>
+<p>A <a href="https://docs.python.org/3/">Python3</a> project model with several useful, standard
+and integrated tools to help you write clean, tested code by following
+the <a href="#zen-of-python">Zen of Python</a>.</p>
+<p>If you start a Python project from scratch and need to write solid, tested, clean code, this repository might help.</p>
+<p>What is the <em>clean</em> code, and why is this important?
+Read <a href="https://www.butterfly.com.au/blog/website-development/clean-high-quality-code-a-guide-on-how-to-become-a-better-programmer">here</a>.</p>
+<h2 id="integrated-tools">Integrated tools</h2>
+<ul>
+<li>
+<p><a href="https://docs.pytest.org">Pytest</a></p>
+<ul>
+<li>useful to write data-driven tests, in a straightforward way and with less boilerplate</li>
+<li><a href="http://pytest-benchmark.readthedocs.io/en/latest/">pytest-benchmark</a> makes easy to compare different functions performances</li>
+</ul>
+</li>
+<li>
+<p><a href="https://hypothesis.readthedocs.io">Hypothesis</a></p>
+<ul>
+<li>\"property based testing\"</li>
+<li>really useful to find unexpected edge cases to test</li>
+<li>NB: no test examples, so far, in this repo</li>
+</ul>
+</li>
+<li>
+<p><a href="http://mypy.readthedocs.io">Mypy</a></p>
+<ul>
+<li>static type checker for Python</li>
+<li>helps to find hidden bugs before they come up</li>
+</ul>
+</li>
+<li>
+<p><a href="http://coverage.readthedocs.io">Coverage.py</a></p>
+<ul>
+<li>tells you which lines and branches are executed</li>
+<li>a 100% coverage should be the <em>minimal</em> quality requirement</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.pylint.org">Pylint</a></p>
+<ul>
+<li>the most complete Python linter</li>
+<li>with several complexity metrics, it\'s useful to keep your code clean, simple and readable</li>
+<li>can catch even duplicate code in different files! 🙌</li>
+<li>helps you to start refactoring before your code becomes too messy</li>
+</ul>
+</li>
+<li>
+<p><a href="http://flake8.readthedocs.io">Flake8</a></p>
+<ul>
+<li>helps to write standard, clean, and documented code</li>
+<li>wraps pep8, pyflakes, McCabe Complexity analysis</li>
+<li>supports plugins</li>
+</ul>
+</li>
+<li>
+<p><a href="https://pycqa.github.io/isort/">Isort</a></p>
+<ul>
+<li>Keep imports sorted alphabetically and grouped (standard, third party, local)</li>
+</ul>
+</li>
+<li>
+<p><a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a></p>
+<ul>
+<li>generates html documentation</li>
+<li>can auto-extract documentation from your codebase</li>
+</ul>
+</li>
+<li>
+<p><a href="https://python-poetry.org/">Poetry</a></p>
+<ul>
+<li>Poetry comes with all the tools you might need to manage your projects in a deterministic way</li>
+<li>Dependency resolver, isolation, cli</li>
+<li>Check the state of your dependencies</li>
+<li>Easily build and package your projects with a single command</li>
+<li>Make your work known by publishing it to PyPI</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/casey/just">just</a></p>
+<ul>
+<li>rules them all together in your workflow</li>
+<li><code>just check</code> to make sure everything is OK</li>
+<li><code>just cov</code> creates an HTML coverage report</li>
+<li><code>just doc</code> generates your documentation</li>
+</ul>
+</li>
+</ul>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li><a href="https://git-scm.com">Git</a></li>
+<li><a href="https://docs.python.org/3/">Python3</a></li>
+<li><a href="https://python-poetry.org/">Poetry</a></li>
+<li><a href="https://github.com/casey/just">just</a></li>
+</ul>
+<h2 id="usage">Usage</h2>
+<h3 id="use-this-template">Use this template</h3>
+<p>First method (recommended): click on <code>Use this template</code> button to start a new repository with the CleanPython template.
+Then rename the project strings to your own name using the <code>just rename</code> command:</p>
+<pre><code>just rename &lt;project-name&gt; &lt;author&gt;
+</code></pre>
+<p>Alternatively, you clone the repository or download the archive and extract it in your project. Then initialize the git repo:</p>
+<pre><code>just init &lt;project-name&gt; &lt;author&gt;
+</code></pre>
+<p>It will create the first commit with the skeleton files.</p>
+<h3 id="first-step">First step</h3>
+<p>First installation from scratch (assume python virtualenv active):</p>
+<pre><code>just startup  # install the latest versions of requirements and check everything is ok
+</code></pre>
+<p>If something fails, try:</p>
+<pre><code>just install  # use frozen requirements that are already checked
+</code></pre>
+<p>Optionally, you can also install the git hooks (further automatic
+checks, pedantic):</p>
+<pre><code>just install-hooks
+</code></pre>
+<h3 id="badges">Badges</h3>
+<p>If you want to add badges to your project associated with the actions setup in <code>.github/workflows</code>, you can use the following command:</p>
+<pre><code>just badges &lt;repo-name&gt; &lt;username&gt;
+</code></pre>
+<p>This adds three badges to the README.md file. Then commit and push the changes.</p>
+<p>To setup GitHub Pages, you have to create a branch named <code>gh-pages</code> and push it to the remote repository.</p>
+<h3 id="minimal-workflow">Minimal workflow</h3>
+<ol>
+<li>write tests first
+    (<a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a>)</li>
+<li>write code until tests pass</li>
+<li>add your files to git index (e.g. <code>git add -u</code>)</li>
+<li><code>just commit &lt;your commit message&gt;</code></li>
+</ol>
+<p>When you launch <code>just commit</code>, your whole code base is statically checked and tested
+before actually committing it. In case of any failure, the commit is aborted.</p>
+<p>To embed this check directly in git: <code>just install-hooks</code>
+(this could be fairly extreme, so these hooks are not installed by default).</p>
+<p>For example:</p>
+<ul>
+<li>are there broken tests? Fail.</li>
+<li>are you trying to get away without writing tests? Fail.</li>
+<li>does your function is too long? Fail.</li>
+<li>does your class contain too many methods or attributes? Fail.</li>
+<li>does your code is too complex? Fail.</li>
+<li>does your code follow a random style? Fail.</li>
+</ul>
+<p>You don\'t want to waste time committing broken code, isn\'t it?</p>
+<p>The time you don't spend writing tests will be lost later when bugs show up, with customer emails, and in the debugging phase.</p>
+<p>Prevention is better than cure.</p>
+<h3 id="recipes">Recipes</h3>
+<p>Make a complete code checkup (lint, test, and coverage):</p>
+<pre><code>just check
+</code></pre>
+<p>Run tests without the coverage.py overhead:</p>
+<pre><code>just test
+</code></pre>
+<p>Create and open your HTML test coverage:</p>
+<pre><code>just cov
+</code></pre>
+<p>Static code analysis (included in <code>just check</code>):</p>
+<pre><code>just lint
+</code></pre>
+<p>Automatically fix the coding style:</p>
+<pre><code>just fix
+</code></pre>
+<p>Update dependencies and config files:</p>
+<pre><code>just up
+</code></pre>
+<p>Create your HTML documentation:</p>
+<pre><code>just doc
+</code></pre>
+<p>Run benchmarks (you have to write down them before :) ):</p>
+<pre><code>just benchmarks
+</code></pre>
+<p>Remove build artifacts (i.e. all untracked files, pay attention!):</p>
+<pre><code>just clean
+</code></pre>
+<h2 id="zen-of-python">Zen of Python</h2>
+<p>The highlighted lines are the ones that, mostly, <code>CleanPython</code>
+(<strong>explicitly</strong> or <em>implicitly</em>) tries to help to reach.</p>
+<ol>
+<li><strong>Beautiful is better than ugly.</strong></li>
+<li><strong>Explicit is better than implicit.</strong></li>
+<li><strong>Simple is better than complex.</strong></li>
+<li><em>Complex is better than complicated.</em></li>
+<li>Flat is better than nested.</li>
+<li>Sparse is better than dense.</li>
+<li><strong>Readability counts.</strong></li>
+<li><strong>Special cases aren\'t special enough to break the rules.</strong></li>
+<li><em>Although practicality beats purity.</em></li>
+<li><strong>Errors should never pass silently.</strong></li>
+<li><em>Unless explicitly silenced.</em></li>
+<li><em>In the face of ambiguity, refuse the temptation to guess.</em></li>
+<li><em>There should be one-- and preferably only one --obvious way to do
+    it.</em></li>
+<li>Although that way may not be obvious at first unless you\'re Dutch.</li>
+<li><strong>Now is better than never.</strong></li>
+<li>Although never is often better than <em>right</em> now.</li>
+<li>If the implementation is hard to explain, it\'s a bad idea.</li>
+<li>If the implementation is easy to explain, it may be a good idea.</li>
+<li>Namespaces are one honking great idea -- let\'s do more of those!</li>
+</ol>
+<h3 id="legend">Legend</h3>
+<p><strong>bold</strong>: explicitly, strongly targeted by <code>CleanPython</code></p>
+<p><em>italic</em>: implicitly or indirectly or weakly targeted by <code>CleanPython</code></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
