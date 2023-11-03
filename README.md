@@ -1,7 +1,6 @@
 # CleanPython
 
 [![Testing](https://github.com/iacopy/cleanpython/actions/workflows/ci.yml/badge.svg)](https://github.com/iacopy/cleanpython/actions/workflows/ci.yml)
-[![Sphinx build](https://github.com/iacopy/cleanpython/actions/workflows/sphinx.yml/badge.svg)](https://github.com/iacopy/cleanpython/actions/workflows/sphinx.yml)
 [![pages-build-deployment](https://github.com/iacopy/cleanpython/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/iacopy/cleanpython/actions/workflows/pages/pages-build-deployment)
 [![Maintainability](https://api.codeclimate.com/v1/badges/142fbb415a2d6f66b804/maintainability)](https://codeclimate.com/github/iacopy/cleanpython/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/142fbb415a2d6f66b804/test_coverage)](https://codeclimate.com/github/iacopy/cleanpython/test_coverage)
@@ -49,9 +48,8 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
 - [Isort](https://pycqa.github.io/isort/)
     - Keep imports sorted alphabetically and grouped (standard, third party, local)
 
-- [Sphinx](http://www.sphinx-doc.org/en/stable/)
+- [MkDocs](https://www.mkdocs.org/)
     - generates html documentation
-    - can auto-extract documentation from your codebase
 
 - [Poetry](https://python-poetry.org/)
     - Poetry comes with all the tools you might need to manage your projects in a deterministic way
@@ -171,6 +169,10 @@ Update dependencies and config files:
 Create your HTML documentation:
 
     just doc
+
+Deploy your documentation online to GitHub Pages:
+
+    just doc-deploy
 
 Run benchmarks (you have to write down them before :) ):
 
