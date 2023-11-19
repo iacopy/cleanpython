@@ -6,7 +6,7 @@ Test the flask app
 import pytest
 
 # My stuff
-from flask_app import app
+from cleanpython.flask_app import app
 
 
 @pytest.fixture
