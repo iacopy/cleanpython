@@ -6,7 +6,7 @@ Basic tests for foobar, using pytest.parametrize.
 import pytest
 
 # My stuff
-import foobar
+from cleanpython import foobar
 
 
 def test_sum_two_numbers():
