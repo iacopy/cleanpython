@@ -53,7 +53,10 @@ MIN_COVERAGE := '100'
 
 # rename project and author
 @rename project author:
+    mv src/cleanpython src/{{project}}
     # replace string "Cleanpython" with {{project}} and "iacopy" with {{author}} in files
+    sed -i "" -e s/cleanpython/"{{project}}"/g tests/test_app.py
+    sed -i "" -e s/cleanpython/"{{project}}"/g tests/test_foobar.py
     sed -i "" -e s/Cleanpython/"{{project}}"/g -e s/iacopy/"{{author}}"/g pyproject.toml
     sed -i "" s/"Clean code with batteries included."/"Project description placeholder"/g pyproject.toml
     sed -i "" s/iacopy/"{{author}}"/g LICENSE
