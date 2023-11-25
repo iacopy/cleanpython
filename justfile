@@ -66,6 +66,14 @@ MIN_COVERAGE := '100'
     # Overwrite the default README.md
     echo "# {{project}}\n" > README.md
 
+    # Stage all changes and show them
+    git add -u  # add modified files
+    git add src/{{project}}  # add renamed folder
+    git diff --cached --stat  # show staged files
+
+    echo
+    echo 'Suggestion: git commit -m "Rename project to {{project}}"'
+
 # add github badges to the readme
 @badges username reponame:
     # Generate badges
