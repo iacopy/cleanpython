@@ -31,3 +31,5 @@ jobs:
       with:
         commit_message: "Update line count"
         file_pattern: "lines_of_code.*"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
