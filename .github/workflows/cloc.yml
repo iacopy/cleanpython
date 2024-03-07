@@ -1,0 +1,33 @@
+name: Aggiorna statistiche cloc (count lines of code) al merge di una PR
+
+on:
+  push:
+    branches: [ main ]
+jobs:
+  cloc:
+    runs-on: ubuntu-latest
+
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+
+    steps:
+    - name: Checkout del codice
+      uses: actions/checkout@v4
+
+    - name: Installa cloc
+      run: |
+        sudo apt update
+        sudo apt install cloc
+
+    - name: Calcola linee di codice
+      run: |
+        cloc . --csv --out=lines_of_code.csv --hide-rate
+        cloc . --out=lines_of_code.txt --hide-rate
+
+    - name: Push changes
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: "Update line count"
+        file_pattern: "lines_of_code.*"
