@@ -19,8 +19,10 @@ MIN_COVERAGE := '100'
     echo "# INSTALL\n"
     echo "## Install using poetry\n"
     echo "    poetry install"
+    echo
     echo "If you only want to install the project’s runtime dependencies:\n"
     echo "    poetry install --only main"
+    echo
     echo "Ensure that the locked dependencies in the poetry.lock file are the only ones present in the environment, removing anything that’s not necessary."
     echo "    poetry install --sync"
     echo
