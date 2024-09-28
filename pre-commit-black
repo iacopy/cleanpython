@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Run Black on all Python files
+files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.py$')
+if [ -n "$files" ]; then
+  echo "Running Black on Python files..."
+  black $files
+  # Add the formatted files back to the staging area
+  git add $files
+fi
