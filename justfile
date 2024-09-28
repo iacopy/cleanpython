@@ -131,6 +131,10 @@ install-hooks:
     # install pre-push hook
     echo "just test" > .git/hooks/pre-push&&chmod +x .git/hooks/pre-push
 
+black-hook:
+    # ensures that all your commits contain Python code formatted according to Black’s rules.
+    cp pre-commit-black .git/hooks/pre-commit&&chmod +x .git/hooks/pre-commit
+
 # bootstrap your virtualenv (deprecated)
 setenv VIRTUALENV:
     @echo Create virtualenv and use it to install requirements
