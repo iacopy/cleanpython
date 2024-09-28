@@ -5,5 +5,7 @@ files,language,blank,comment,code,"github.com/AlDanial/cloc v 1.90"
 1,CSS,7,0,41
 1,TOML,5,0,29
 1,HTML,0,0,18
+1,CSV,0,0,9
+1,Bourne Shell,1,2,7
 1,INI,0,0,4
-14,SUM,128,50,358
+16,SUM,129,52,374
