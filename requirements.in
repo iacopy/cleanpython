@@ -1,0 +1,17 @@
+# Runtime
+Flask  # just as example
+
+# Development
+pytest
+pytest-benchmark
+pytest-cov
+coverage
+mypy
+pylint
+flake8
+isort
+black
+
+# Documentation
+mkdocs
+mkdocstrings
