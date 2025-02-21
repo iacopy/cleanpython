@@ -51,6 +51,12 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
 - [MkDocs](https://www.mkdocs.org/)
     - generates html documentation
 
+- [Pip-tools]
+    - Simplifies updating requirements.
+    - `pip-compile requirements.in` generates requirements.txt
+    - `pip-sync` installs from requirements.txt
+    - You can also have dev-requirements if you want
+
 - [Poetry](https://python-poetry.org/)
     - Poetry comes with all the tools you might need to manage your projects in a deterministic way
     - Dependency resolver, isolation, cli
