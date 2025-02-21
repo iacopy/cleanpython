@@ -96,16 +96,16 @@ It will create the first commit with the skeleton files.
 
 First installation from scratch (assume python virtualenv active):
 
-    just startup  # install the latest versions of requirements and check everything is ok
-
-If something fails, try:
-
-    just install  # use frozen requirements that are already checked
+    just install  # install dependencies and check everything is ok
 
 Optionally, you can also install the git hooks (further automatic
 checks, pedantic):
 
     just install-hooks
+
+To install hook to black-format code before commit:
+
+    black-hook:
 
 ### Badges
 

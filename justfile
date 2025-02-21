@@ -84,11 +84,11 @@ MIN_COVERAGE := '100'
     git add .
     git commit -m "Initial commit (based on CleanPython template)"
 
-# first time installation to get the new versions of libraries and check everything is ok
-@startup:
+# install everything
+@install:
+    pip install --upgrade pip
+    pip install --upgrade pip-tools
     pip-compile
-    echo "Get the new versions of libraries and check everything is ok"
-    just up
     pip-sync
     echo "Complete checkup of code: lint and test coverage"
     just check
@@ -99,12 +99,9 @@ MIN_COVERAGE := '100'
     echo =========================================================================================
     echo "You can now run 'just' to get a list of available recipes, or 'just help' to get more info."
 
-# install stuff: dependencies (using pip-tools) and git hooks
-install:
-    pip-sync
-
 # get the latest versions of the installed libraries
 up:
+    pip install --upgrade pip
     pip-compile --upgrade
     pylint --generate-rcfile > pylintrc
     @echo "Now you can call `just install`"
