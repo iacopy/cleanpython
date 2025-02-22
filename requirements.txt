@@ -15,6 +15,8 @@ click==8.1.8
     #   black
     #   flask
     #   mkdocs
+colorama==0.4.6
+    # via griffe
 coverage[toml]==7.6.12
     # via
     #   -r requirements.in
@@ -27,6 +29,8 @@ flask==3.1.0
     # via -r requirements.in
 ghp-import==2.1.0
     # via mkdocs
+griffe==1.5.7
+    # via mkdocstrings-python
 iniconfig==2.0.0
     # via pytest
 isort==6.0.0
@@ -67,12 +71,18 @@ mkdocs==1.6.1
     #   mkdocs-autorefs
     #   mkdocstrings
 mkdocs-autorefs==1.3.1
-    # via mkdocstrings
+    # via
+    #   mkdocstrings
+    #   mkdocstrings-python
 mkdocs-get-deps==0.2.0
     # via
     #   mkdocs
     #   mkdocstrings
 mkdocstrings==0.28.1
+    # via
+    #   -r requirements.in
+    #   mkdocstrings-python
+mkdocstrings-python==1.16.1
     # via -r requirements.in
 mypy==1.15.0
     # via -r requirements.in
