@@ -7,5 +7,6 @@ files,language,blank,comment,code,"github.com/AlDanial/cloc v 1.98"
 2,INI,5,0,23
 1,HTML,0,0,18
 1,CSV,0,0,11
+1,Bourne Again Shell,4,4,10
 1,Bourne Shell,1,2,7
-18,SUM,131,52,532
+19,SUM,135,56,542
