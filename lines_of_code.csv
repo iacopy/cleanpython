@@ -1,11 +1,11 @@
-files,language,blank,comment,code,"github.com/AlDanial/cloc v 1.90"
-3,Markdown,78,0,151
-3,YAML,11,5,68
-4,Python,27,45,47
+files,language,blank,comment,code,"github.com/AlDanial/cloc v 1.98"
+2,Text,0,0,163
+3,Markdown,79,0,156
+3,YAML,11,5,66
+4,Python,28,45,47
 1,CSS,7,0,41
-1,TOML,5,0,29
+2,INI,5,0,23
 1,HTML,0,0,18
-1,CSV,0,0,9
+1,CSV,0,0,11
 1,Bourne Shell,1,2,7
-1,INI,0,0,4
-16,SUM,129,52,374
+18,SUM,131,52,532
