@@ -1,0 +1,18 @@
+#! /bin/bash
+
+# Copy this to .git/hooks to use it
+# However, there is already a recipe for git-hooks in justfile that
+# creates a pre-push with `just test`
+
+# Run pytest
+echo "Testing..."
+pytest
+TEST_EXIT_CODE=$?
+
+if [ $TEST_EXIT_CODE -ne 0 ]; then
+    echo "Tests failed with exit code $TEST_EXIT_CODE. Cannot proceed with the push."
+    exit 1
+fi
+
+echo "Tests passed. Proceeding with the push."
+exit 0
