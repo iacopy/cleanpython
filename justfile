@@ -16,21 +16,13 @@ MIN_COVERAGE := '100'
 
 # just show the help
 @help:
-    echo "# INSTALL\n"
-    echo "## Install using poetry\n"
-    echo "    poetry install"
+    echo "## INSTALL"
     echo
-    echo "If you only want to install the project’s runtime dependencies:\n"
-    echo "    poetry install --only main"
+    echo "    just install"
+    echo "    # or pip-sync"
     echo
-    echo "Ensure that the locked dependencies in the poetry.lock file are the only ones present in the environment, removing anything that’s not necessary."
-    echo "    poetry install --sync"
-    echo
-    echo "Add dependencies to the current project:\n"
-    echo "    poetry add <dependency>"
-    echo
-    echo "Add a development dependency:\n"
-    echo "    poetry add <dependency> --group dev"
+    echo "## Update"
+    echo "    just up"
     echo
     echo "## Testing and code quality"
     echo
@@ -92,12 +84,12 @@ MIN_COVERAGE := '100'
     git add .
     git commit -m "Initial commit (based on CleanPython template)"
 
-# first time installation to get the new versions of libraries and check everything is ok
-@startup:
-    poetry self update
-    echo "Get the new versions of libraries and check everything is ok"
-    just up
-    poetry install
+# install everything
+@install:
+    pip install --upgrade pip
+    pip install --upgrade pip-tools
+    pip-compile
+    pip-sync
     echo "Complete checkup of code: lint and test coverage"
     just check
     echo "Creating documentation of current codebase"
@@ -107,14 +99,11 @@ MIN_COVERAGE := '100'
     echo =========================================================================================
     echo "You can now run 'just' to get a list of available recipes, or 'just help' to get more info."
 
-# install stuff: dependencies (using poetry) and git hooks
-install:
-    poetry install
-
 # get the latest versions of the installed libraries
 up:
-    poetry update
-    poetry run pylint --generate-rcfile > pylintrc
+    pip install --upgrade pip
+    pip-compile --upgrade
+    pylint --generate-rcfile > pylintrc
     @echo "Now you can call `just install`"
 
 # (beta) for VirtualFish: like 'up' but recreate vf virtualenv to remove also old dependencies
@@ -131,6 +120,7 @@ install-hooks:
     # install pre-push hook
     echo "just test" > .git/hooks/pre-push&&chmod +x .git/hooks/pre-push
 
+# install hook to black code before commit
 black-hook:
     # ensures that all your commits contain Python code formatted according to Black’s rules.
     cp pre-commit-black .git/hooks/pre-commit&&chmod +x .git/hooks/pre-commit
@@ -143,19 +133,19 @@ setenv VIRTUALENV:
     @echo Now please activate the virtualenv, then call \"just doc\".
 
 @_mypy:
-    poetry run mypy --ignore-missing-imports src
+    mypy --ignore-missing-imports src
 
 @_flake8:
-    poetry run flake8 .
+    flake8 .
 
 @_pylint:
-    poetry run pylint $(git ls-files '*.py') --ignore conf.py
+    pylint $(git ls-files '*.py') --ignore conf.py
 
 @_isort:
-    poetry run isort --check-only --recursive --quiet . || just _fail "Fix imports by calling \'just fix\'."
+    isort --check-only --recursive --quiet . || just _fail "Fix imports by calling \'just fix\'."
 
 @_black:
-    poetry run black --check -q . || just _fail "Fix code formatting by calling \'just fix\'."
+    black --check -q . || just _fail "Fix code formatting by calling \'just fix\'."
 
 # statically check the codebase (mypy, flake8, pylint, isort)
 @lint:
@@ -172,29 +162,29 @@ setenv VIRTUALENV:
 
 # auto fix imports and pep8 coding style
 @fix:
-    poetry run isort .
-    poetry run black .
+    isort .
+    black .
     # Re-check code quality
     just lint
 
 # run tests with coverage
 @_test-cov:
-    poetry run pytest --cov --cov-report=xml .
+    pytest --cov --cov-report=xml .
 
 # run tests only (with no coverage and no lint)
 @test:
-    poetry run pytest
+    pytest
     echo "Tests: OK ✅✅✅✅"
 
 # run tests with coverage.py, create html report and open it
 @cov:
     just _test-cov
-    poetry run coverage html  # create an HTML report
+    coverage html  # create an HTML report
     just _open-nofail htmlcov/index.html
 
 # check if coverage satisfies requirements
 @_check-cov:
-    poetry run coverage report --fail-under {{MIN_COVERAGE}}
+    coverage report --fail-under {{MIN_COVERAGE}}
     echo "\nTest coverage {{MIN_COVERAGE}}%  : OK ✅✅✅✅✅"
 
 # complete checkup: code analysis, tests and coverage
@@ -234,15 +224,15 @@ setenv VIRTUALENV:
 
 # execute benchmarks tests only, in benchmark mode.
 @benchmarks K_SELECTOR="test":
-    poetry run pytest --benchmark-enable --benchmark-only -k {{K_SELECTOR}} .
+    pytest --benchmark-enable --benchmark-only -k {{K_SELECTOR}} .
 
 # serve HTML documentation
 @doc:
-    poetry run mkdocs serve
+    mkdocs build
 
 # deploy HTML documentation to github pages
 @doc-deploy:
-    poetry run mkdocs gh-deploy
+    mkdocs gh-deploy
 
 # WARNING! Remove untracked stuff (git clean -idx)! Useful to clean artifacts.
 clean:

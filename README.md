@@ -51,6 +51,12 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
 - [MkDocs](https://www.mkdocs.org/)
     - generates html documentation
 
+- [Pip-tools]
+    - Simplifies updating requirements.
+    - `pip-compile requirements.in` generates requirements.txt
+    - `pip-sync` installs from requirements.txt
+    - You can also have dev-requirements if you want
+
 - [Poetry](https://python-poetry.org/)
     - Poetry comes with all the tools you might need to manage your projects in a deterministic way
     - Dependency resolver, isolation, cli
@@ -90,16 +96,16 @@ It will create the first commit with the skeleton files.
 
 First installation from scratch (assume python virtualenv active):
 
-    just startup  # install the latest versions of requirements and check everything is ok
-
-If something fails, try:
-
-    just install  # use frozen requirements that are already checked
+    just install  # install dependencies and check everything is ok
 
 Optionally, you can also install the git hooks (further automatic
 checks, pedantic):
 
     just install-hooks
+
+To install hook to black-format code before commit:
+
+    black-hook:
 
 ### Badges
 

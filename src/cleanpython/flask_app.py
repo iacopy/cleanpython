@@ -1,6 +1,7 @@
 """
 This is the main entry point for the Flask app.
 """
+
 # 3rd party
 from flask import Flask
 from flask import render_template
