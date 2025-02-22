@@ -2,10 +2,10 @@
 
 ## Flask app
 
-::: src.flask_app.hello_world
+::: src.cleanpython.flask_app.hello_world
 
-::: src.flask_app.index
+::: src.cleanpython.flask_app.index
 
 ## Foobar
 
-::: src.foobar.sum_two_numbers
+::: src.cleanpython.foobar.sum_two_numbers
