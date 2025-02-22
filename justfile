@@ -228,7 +228,7 @@ setenv VIRTUALENV:
 
 # serve HTML documentation
 @doc:
-    mkdocs serve
+    mkdocs build
 
 # deploy HTML documentation to github pages
 @doc-deploy:
