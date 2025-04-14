@@ -105,7 +105,7 @@ checks, pedantic):
 
 To install hook to black-format code before commit:
 
-    black-hook:
+    just black-hook
 
 ### Badges
 
