@@ -120,10 +120,10 @@ install-hooks:
     # install pre-push hook
     echo "just test" > .git/hooks/pre-push&&chmod +x .git/hooks/pre-push
 
-# install hook to black code before commit
-black-hook:
-    # ensures that all your commits contain Python code formatted according to Black’s rules.
-    cp pre-commit-black .git/hooks/pre-commit&&chmod +x .git/hooks/pre-commit
+# install hook to check code before commit
+ruff-hook:
+    # ensures that all your commits contain Python code formatted according to ruff’s rules.
+    cp pre-commit-ruff .git/hooks/pre-commit&&chmod +x .git/hooks/pre-commit
 
 # bootstrap your virtualenv (deprecated)
 setenv VIRTUALENV:
@@ -135,35 +135,24 @@ setenv VIRTUALENV:
 @_mypy:
     mypy --ignore-missing-imports src
 
-@_flake8:
-    flake8 .
-
 @_pylint:
     pylint $(git ls-files '*.py') --ignore conf.py
 
-@_isort:
-    isort --check-only --recursive --quiet . || just _fail "Fix imports by calling \'just fix\'."
+@_ruff:
+    ruff check -q $(git ls-files '*.py')
 
-@_black:
-    black --check -q . || just _fail "Fix code formatting by calling \'just fix\'."
-
-# statically check the codebase (mypy, flake8, pylint, isort)
+# statically check the codebase (mypy, pylint, ruff)
 @lint:
     just _mypy
-    echo "mypy  : OK ✅"
-    just _flake8
-    echo "flake8: OK ✅✅"
+    echo "mypy  : OK ☑️"
+    just _ruff
+    echo "ruff  : OK ⚡️⚡️"
     just _pylint
-    echo "pylint: OK ✅✅✅"
-    just _isort
-    echo "isort : OK ✅✅✅ 🍰"
-    just _black
-    echo "black : OK ✅✅✅ 🍒"
+    echo "pylint: OK ☑️☑️☑️"
 
-# auto fix imports and pep8 coding style
+# auto fix imports and pep8 coding style (via ruff)
 @fix:
-    isort .
-    black .
+    ruff format .
     # Re-check code quality
     just lint
 
@@ -174,7 +163,7 @@ setenv VIRTUALENV:
 # run tests only (with no coverage and no lint)
 @test:
     pytest
-    echo "Tests: OK ✅✅✅✅"
+    echo "Tests: OK ✅✅✅"
 
 # run tests with coverage.py, create html report and open it
 @cov:

@@ -8,9 +8,7 @@ pytest-cov
 coverage
 mypy
 pylint
-flake8
-isort
-black
+ruff
 
 # Documentation
 mkdocs
