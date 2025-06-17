@@ -40,13 +40,17 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
     - can catch even duplicate code in different files! 🙌
     - helps you to start refactoring before your code becomes too messy
 
-- [Flake8](http://flake8.readthedocs.io)
-    - helps to write standard, clean, and documented code
-    - wraps pep8, pyflakes, McCabe Complexity analysis
-    - supports plugins
-
-- [Isort](https://pycqa.github.io/isort/)
-    - Keep imports sorted alphabetically and grouped (standard, third party, local)
+- [Ruff](https://github.com/astral-sh/ruff): an extremely fast Python linter and code formatter, written in Rust. Ruff can be used to replace Flake8 (plus dozens of plugins), Black, isort, pydocstyle, pyupgrade, autoflake, and more, all while executing tens or hundreds of times faster than any individual tool.
+    - ⚡️ 10-100x faster than existing linters (like Flake8) and formatters (like Black)
+    - 🐍 Installable via pip
+    - 🛠️ pyproject.toml support
+    - 🤝 Python 3.13 compatibility
+    - ⚖️ Drop-in parity with Flake8, isort, and Black
+    - 📦 Built-in caching, to avoid re-analyzing unchanged files
+    - 🔧 Fix support, for automatic error correction (e.g., automatically remove unused imports)
+    - 📏 Over 800 built-in rules, with native re-implementations of popular Flake8 plugins, like - flake8-bugbear
+    - ⌨️ First-party editor integrations for VS Code and more
+    - 🌎 Monorepo-friendly, with hierarchical and cascading configuration
 
 - [MkDocs](https://www.mkdocs.org/)
     - generates html documentation
@@ -56,13 +60,6 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
     - `pip-compile requirements.in` generates requirements.txt
     - `pip-sync` installs from requirements.txt
     - You can also have dev-requirements if you want
-
-- [Poetry](https://python-poetry.org/)
-    - Poetry comes with all the tools you might need to manage your projects in a deterministic way
-    - Dependency resolver, isolation, cli
-    - Check the state of your dependencies
-    - Easily build and package your projects with a single command
-    - Make your work known by publishing it to PyPI
 
 - [just](https://github.com/casey/just)
     - rules them all together in your workflow
@@ -74,7 +71,6 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
 
 - [Git](https://git-scm.com)
 - [Python3](https://docs.python.org/3/)
-- [Poetry](https://python-poetry.org/)
 - [just](https://github.com/casey/just)
 
 ## Usage
@@ -103,9 +99,9 @@ checks, pedantic):
 
     just install-hooks
 
-To install hook to black-format code before commit:
+To install hook to check code when commit:
 
-    just black-hook
+    just ruff-hook
 
 ### Badges
 
