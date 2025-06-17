@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Run Ruff check on all Python files
+files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.py$')
+if [ -n "$files" ]; then
+  echo "Running Ruff check on Python files..."
+  ruff check $files
+  # Run the Ruff formatter on the given files or directories
+  ruff format --check $files
+fi
