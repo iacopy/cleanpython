@@ -55,7 +55,7 @@ Read [here](https://www.butterfly.com.au/blog/website-development/clean-high-qua
 - [MkDocs](https://www.mkdocs.org/)
     - generates html documentation
 
-- [Pip-tools]
+- [Pip-tools](https://github.com/jazzband/pip-tools/)
     - Simplifies updating requirements.
     - `pip-compile requirements.in` generates requirements.txt
     - `pip-sync` installs from requirements.txt
